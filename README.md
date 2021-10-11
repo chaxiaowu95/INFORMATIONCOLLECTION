@@ -1,3 +1,3 @@
 # tensorflow-LTR
 
-Ongoing p
+Ongoing proje
