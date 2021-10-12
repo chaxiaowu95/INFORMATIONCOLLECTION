@@ -1,3 +1,3 @@
 # tensorflow-LTR
 
-Ongoing projects for implem
+Ongoing projects for implementing v
