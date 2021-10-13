@@ -1,3 +1,3 @@
 # tensorflow-LTR
 
-Ongoing projects for implementing variou
+Ongoing projects for implementing various Lear
