@@ -1,3 +1,3 @@
 # tensorflow-LTR
 
-Ongoing projects for implementing various Learning t
+Ongoing projects for implementing various Learning to 
