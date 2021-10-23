@@ -7,4 +7,4 @@ Ongoing projects for implementing various Learning to Rank (LTR) models.
         - DNN
         - LR
 - pairwise
-   
+    - RankNe
