@@ -10,4 +10,6 @@ Ongoing projects for implementing various Learning to Rank (LTR) models.
     - RankNet
     - LambdaRank
 - listwise
-    - ListNet (TOD
+    - ListNet (TODO)
+
+# Re
