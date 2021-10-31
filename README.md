@@ -13,4 +13,4 @@ Ongoing projects for implementing various Learning to Rank (LTR) models.
     - ListNet (TODO)
 
 # References
-[1] Hang L
+[1] Hang Li,
