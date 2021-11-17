@@ -18,4 +18,4 @@ Ongoing projects for implementing various Learning to Rank (LTR) models.
 [2] Christopher J.C. Burges, *From RankNet to LambdaRank to LambdaMART: An Overview*
 
 # Acknowledgments
-This project gets inspirations from the following
+This project gets inspirations from the following p
