@@ -19,4 +19,4 @@ Ongoing projects for implementing various Learning to Rank (LTR) models.
 
 # Acknowledgments
 This project gets inspirations from the following projects:
-- [learning-ra
+- [learning-rank-pub
