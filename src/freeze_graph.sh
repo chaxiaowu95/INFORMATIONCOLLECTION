@@ -1,1 +1,2 @@
-#!/usr/bin/env bas
+#!/usr/bin/env bash
+$m
