@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-$mod
+$model_t
