@@ -12,3 +12,10 @@ def load_data(type):
     labels = np.load(label_file_pat%type)
     qids = np.load(group_file_pat % type)
     features = np.load(feature_file_pat%type)
+
+    X = {
+        "feature": features,
+        "label": labels,
+        "qid": qids
+    }
+    return X
