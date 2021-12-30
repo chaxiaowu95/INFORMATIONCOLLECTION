@@ -26,3 +26,9 @@ logger = utils._get_logger("../logs", "tf-%s.log" % utils._timestamp())
 
 params_common = {
     # you might have to tune the batch size to get ranknet and lambdarank working
+    # keep in mind the followings:
+    # 1. batch size should be large enough to ensure there are samples of different
+    # relevance labels from the same group, especially when you use "sample" as "batch_sampling_method"
+    # this ensure the gradients are nonzeros and stable across batches,
+    # which is important for pairwise method, e.g., ranknet and lambdarank
+    # 2. batch size should not be very large since the lambda_ij matrix in ranknet and lambdarank
