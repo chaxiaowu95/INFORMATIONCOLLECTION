@@ -19,3 +19,7 @@ def load_data(type):
         "qid": qids
     }
     return X
+
+
+utils._makedirs("../logs")
+logger = utils._get_logger("../logs", "tf-%s.log" % utils._timestamp())
