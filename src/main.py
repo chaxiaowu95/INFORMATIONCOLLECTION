@@ -32,3 +32,12 @@ params_common = {
     # this ensure the gradients are nonzeros and stable across batches,
     # which is important for pairwise method, e.g., ranknet and lambdarank
     # 2. batch size should not be very large since the lambda_ij matrix in ranknet and lambdarank
+    # (which are of size batch_size x batch_size) will consume large memory space
+    "batch_size": 128,
+    "epoch": 50,
+    "feature_dim": 46,
+
+    "batch_sampling_method": "sample",
+    "shuffle": True,
+
+    "optimizer_type": "adam",
