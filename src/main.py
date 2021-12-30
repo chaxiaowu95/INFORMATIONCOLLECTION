@@ -23,3 +23,6 @@ def load_data(type):
 
 utils._makedirs("../logs")
 logger = utils._get_logger("../logs", "tf-%s.log" % utils._timestamp())
+
+params_common = {
+    # you might have to tune the batch size to get ranknet and lambdarank working
