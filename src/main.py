@@ -41,3 +41,10 @@ params_common = {
     "shuffle": True,
 
     "optimizer_type": "adam",
+    "init_lr": 0.001,
+    "beta1": 0.975,
+    "beta2": 0.999,
+    "decay_steps": 1000,
+    "decay_rate": 0.9,
+    "schedule_decay": 0.004,
+    "random_seed": 2018,
