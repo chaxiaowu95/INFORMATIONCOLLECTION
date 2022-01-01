@@ -55,3 +55,7 @@ params_common = {
 def train_lr():
     params = {
         "offline_model_dir": "../weights/lr",
+    }
+    params.update(params_common)
+
+    X_train, X_valid = load_data("train"), load_data("vali")
