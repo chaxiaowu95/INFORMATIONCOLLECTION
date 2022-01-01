@@ -48,3 +48,10 @@ params_common = {
     "decay_rate": 0.9,
     "schedule_decay": 0.004,
     "random_seed": 2018,
+    "eval_every_num_update": 100,
+}
+
+
+def train_lr():
+    params = {
+        "offline_model_dir": "../weights/lr",
