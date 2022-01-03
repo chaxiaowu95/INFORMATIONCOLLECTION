@@ -73,3 +73,5 @@ def train_dnn():
         "fc_type": "fc",
         "fc_dim": 32,
         "fc_dropout": 0.,
+    }
+    params.update(params_common)
