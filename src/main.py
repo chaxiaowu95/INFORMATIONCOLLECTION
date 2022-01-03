@@ -67,3 +67,7 @@ def train_lr():
 
 def train_dnn():
     params = {
+        "offline_model_dir": "../weights/dnn",
+
+        # deep part score fn
+        "fc_type": "fc",
