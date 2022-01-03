@@ -75,3 +75,10 @@ def train_dnn():
         "fc_dropout": 0.,
     }
     params.update(params_common)
+
+    X_train, X_valid = load_data("train"), load_data("vali")
+
+    model = DNN("ranking", params, logger)
+    model.fit(X_train, validation_data=X_valid)
+    model.save_session()
+
