@@ -71,3 +71,5 @@ def train_dnn():
 
         # deep part score fn
         "fc_type": "fc",
+        "fc_dim": 32,
+        "fc_dropout": 0.,
