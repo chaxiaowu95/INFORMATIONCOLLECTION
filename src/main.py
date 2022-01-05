@@ -97,3 +97,9 @@ def train_ranknet():
         "sigma": 1.,
     }
     params.update(params_common)
+
+    X_train, X_valid = load_data("train"), load_data("vali")
+
+    model = RankNet("ranking", params, logger)
+    model.fit(X_train, validation_data=X_valid)
+    model.save_session()
