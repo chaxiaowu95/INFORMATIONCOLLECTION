@@ -103,3 +103,8 @@ def train_ranknet():
     model = RankNet("ranking", params, logger)
     model.fit(X_train, validation_data=X_valid)
     model.save_session()
+
+
+def train_lambdarank():
+    params = {
+        "offline_model_dir": "../weights/lambdarank",
