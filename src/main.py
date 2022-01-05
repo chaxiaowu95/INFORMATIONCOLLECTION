@@ -82,3 +82,12 @@ def train_dnn():
     model.fit(X_train, validation_data=X_valid)
     model.save_session()
 
+
+def train_ranknet():
+    params = {
+        "offline_model_dir": "../weights/ranknet",
+
+        # deep part score fn
+        "fc_type": "fc",
+        "fc_dim": 32,
+        "fc_dropout": 0.,
