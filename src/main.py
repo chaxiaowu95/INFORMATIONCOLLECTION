@@ -91,3 +91,9 @@ def train_ranknet():
         "fc_type": "fc",
         "fc_dim": 32,
         "fc_dropout": 0.,
+
+        # ranknet param
+        "factorization": True,
+        "sigma": 1.,
+    }
+    params.update(params_common)
