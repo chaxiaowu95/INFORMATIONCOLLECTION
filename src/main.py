@@ -108,3 +108,7 @@ def train_ranknet():
 def train_lambdarank():
     params = {
         "offline_model_dir": "../weights/lambdarank",
+
+        # deep part score fn
+        "fc_type": "fc",
+        "fc_dim": 32,
