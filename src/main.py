@@ -124,3 +124,8 @@ def train_lambdarank():
     model = LambdaRank("ranking", params, logger)
     model.fit(X_train, validation_data=X_valid)
     model.save_session()
+
+
+def main():
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "lr":
