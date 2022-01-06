@@ -112,3 +112,8 @@ def train_lambdarank():
         # deep part score fn
         "fc_type": "fc",
         "fc_dim": 32,
+        "fc_dropout": 0.,
+
+        # lambdarank param
+        "sigma": 1.,
+    }
