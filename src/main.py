@@ -129,3 +129,8 @@ def train_lambdarank():
 def main():
     if len(sys.argv) > 1:
         if sys.argv[1] == "lr":
+            train_lr()
+        elif sys.argv[1] == "dnn":
+            train_dnn()
+        elif sys.argv[1] == "ranknet":
+            train_ranknet()
