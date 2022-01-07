@@ -138,3 +138,6 @@ def main():
             train_lambdarank()
     else:
         train_lr()
+
+
+if __name__ == "__main__":
