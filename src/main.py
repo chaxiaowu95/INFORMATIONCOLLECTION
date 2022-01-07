@@ -134,3 +134,7 @@ def main():
             train_dnn()
         elif sys.argv[1] == "ranknet":
             train_ranknet()
+        elif sys.argv[1] == "lambdarank":
+            train_lambdarank()
+    else:
+        train_lr()
