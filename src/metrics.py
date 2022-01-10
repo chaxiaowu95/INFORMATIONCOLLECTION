@@ -17,3 +17,8 @@ def calc_err(predicted_order):
         previous_rel = rel_r
 
     return err
+
+
+def calc_ri(predicted_order, i):
+    return (2 ** predicted_order[i] - 1) / (2 ** np.max(predicted_order))
+
