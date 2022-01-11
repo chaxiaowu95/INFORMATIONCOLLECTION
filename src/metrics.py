@@ -32,3 +32,11 @@ def dcg(predicted_order):
 def ndcg(score, top_ten=True):
     end = 10 if top_ten else len(score)
     sorted_score = np.sort(score)[::-1]
+    dcg_ = dcg(score[:end])
+    if dcg_ == 0:
+        return 0
+    dcg_max = dcg(sorted_score[:end])
+    return dcg_/dcg_max
+
+
+if __name__ == "__main__":
