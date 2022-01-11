@@ -27,3 +27,8 @@ def dcg(predicted_order):
     i = np.log(1. + np.arange(1,len(predicted_order)+1))
     l = 2 ** (np.array(predicted_order)) - 1
     return np.sum(l/i)
+
+
+def ndcg(score, top_ten=True):
+    end = 10 if top_ten else len(score)
+    sorted_score = np.sort(score)[::-1]
