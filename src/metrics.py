@@ -22,3 +22,8 @@ def calc_err(predicted_order):
 def calc_ri(predicted_order, i):
     return (2 ** predicted_order[i] - 1) / (2 ** np.max(predicted_order))
 
+
+def dcg(predicted_order):
+    i = np.log(1. + np.arange(1,len(predicted_order)+1))
+    l = 2 ** (np.array(predicted_order)) - 1
+    return np.sum(l/i)
