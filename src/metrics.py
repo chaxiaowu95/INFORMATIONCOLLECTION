@@ -43,3 +43,4 @@ if __name__ == "__main__":
     predicted_order_ = [4, 4, 2, 3, 2, 4, 0, 1, 1, 4, 1, 3, 3, 2, 3, 4, 2, 1, 0, 0]
     print(calc_err(predicted_order_))
     print(dcg(predicted_order_))
+    print((ndcg(predicted_order_)))
