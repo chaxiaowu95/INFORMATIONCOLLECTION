@@ -14,3 +14,9 @@ from tf_common.nadam import NadamOptimizer
 class BaseRankModel(object):
 
     def __init__(self, model_name, params, logger, training=True):
+        self.model_name = model_name
+        self.params = params
+        self.logger = logger
+        utils._makedirs(self.params["offline_model_dir"], force=training)
+
+        self._init_tf_vars()
