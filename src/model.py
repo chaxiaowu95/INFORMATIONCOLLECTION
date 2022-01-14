@@ -23,3 +23,9 @@ class BaseRankModel(object):
         self.loss, self.num_pairs, self.score, self.train_op = self._build_model()
 
         self.sess, self.saver = self._init_session()
+
+
+    def _init_tf_vars(self):
+        with tf.name_scope(self.model_name):
+            #### input for training and inference
+            self.feature = tf.placeholder(tf.float32, shape=[None, self.params["feature_dim"]], name="feature")
