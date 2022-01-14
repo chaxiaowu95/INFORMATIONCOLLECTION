@@ -20,3 +20,6 @@ class BaseRankModel(object):
         utils._makedirs(self.params["offline_model_dir"], force=training)
 
         self._init_tf_vars()
+        self.loss, self.num_pairs, self.score, self.train_op = self._build_model()
+
+        self.sess, self.saver = self._init_session()
