@@ -44,3 +44,8 @@ class BaseRankModel(object):
     def _build_model(self):
         return None, None, None, None
 
+
+    def _score_fn_inner(self, x, reuse=False):
+        # deep
+        hidden_units = [self.params["fc_dim"] * 4, self.params["fc_dim"] * 2, self.params["fc_dim"]]
+        dropouts = [self.params["fc_dropout"]] * len(hidden_units)
