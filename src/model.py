@@ -29,3 +29,7 @@ class BaseRankModel(object):
         with tf.name_scope(self.model_name):
             #### input for training and inference
             self.feature = tf.placeholder(tf.float32, shape=[None, self.params["feature_dim"]], name="feature")
+            self.training = tf.placeholder(tf.bool, shape=[], name="training")
+            #### input for training
+            self.label = tf.placeholder(tf.float32, shape=[None, 1], name="label")
+            self.sorted_label = tf.placeholder(tf.float32, shape=[None, 1], name="sorted_label")
