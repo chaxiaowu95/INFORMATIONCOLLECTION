@@ -38,3 +38,9 @@ class BaseRankModel(object):
             self.global_step = tf.Variable(0, trainable=False)
             self.learning_rate = tf.train.exponential_decay(self.params["init_lr"], self.global_step,
                                                             self.params["decay_steps"], self.params["decay_rate"])
+            self.batch_size = tf.placeholder(tf.int32, shape=[], name="batch_size")
+
+
+    def _build_model(self):
+        return None, None, None, None
+
