@@ -33,3 +33,8 @@ class BaseRankModel(object):
             #### input for training
             self.label = tf.placeholder(tf.float32, shape=[None, 1], name="label")
             self.sorted_label = tf.placeholder(tf.float32, shape=[None, 1], name="sorted_label")
+            self.qid = tf.placeholder(tf.float32, shape=[None, 1], name="qid")
+            #### vars for training
+            self.global_step = tf.Variable(0, trainable=False)
+            self.learning_rate = tf.train.exponential_decay(self.params["init_lr"], self.global_step,
+                                                            self.params["decay_steps"], self.params["decay_rate"])
