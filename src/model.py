@@ -56,3 +56,12 @@ class BaseRankModel(object):
                                 kernel_initializer=tf.glorot_uniform_initializer(seed=self.params["random_seed"]))
 
         return score
+
+
+    def _score_fn(self, x, reuse=False):
+        # https://stackoverflow.com/questions/45670224/why-the-tf-name-scope-with-same-name-is-different
+        with tf.name_scope(self.model_name+"/"):
+            score = self._score_fn_inner(x, reuse)
+            # https://stackoverflow.com/questions/46980287/output-node-for-tensorflow-graph-created-with-tf-layers
+            # add an identity node to output graph
+            score = tf.identity(score, "score")
