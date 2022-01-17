@@ -49,3 +49,10 @@ class BaseRankModel(object):
         # deep
         hidden_units = [self.params["fc_dim"] * 4, self.params["fc_dim"] * 2, self.params["fc_dim"]]
         dropouts = [self.params["fc_dropout"]] * len(hidden_units)
+        out = dense_block(x, hidden_units=hidden_units, dropouts=dropouts, densenet=False, reuse=reuse,
+                          training=self.training, seed=self.params["random_seed"])
+        # score
+        score = tf.layers.dense(out, 1, activation=None,
+                                kernel_initializer=tf.glorot_uniform_initializer(seed=self.params["random_seed"]))
+
+        return score
