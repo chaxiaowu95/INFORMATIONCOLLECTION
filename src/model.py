@@ -65,3 +65,6 @@ class BaseRankModel(object):
             # https://stackoverflow.com/questions/46980287/output-node-for-tensorflow-graph-created-with-tf-layers
             # add an identity node to output graph
             score = tf.identity(score, "score")
+
+        return score
+
