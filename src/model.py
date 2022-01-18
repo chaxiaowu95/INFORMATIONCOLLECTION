@@ -78,3 +78,10 @@ class BaseRankModel(object):
             tf.constant(0, tf.int32),
             tf.TensorArray(tf.float32, size=self.batch_size),
         ]
+
+        _, jacobian = tf.while_loop(
+            lambda j, _: j < self.batch_size,
+            lambda j, result: (j + 1, result.write(j, tf.gradients(y_flat[j], x))),
+            loop_vars)
+
+        return jacobian.stack()
