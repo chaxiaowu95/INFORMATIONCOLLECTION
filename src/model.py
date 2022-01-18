@@ -76,3 +76,5 @@ class BaseRankModel(object):
         """
         loop_vars = [
             tf.constant(0, tf.int32),
+            tf.TensorArray(tf.float32, size=self.batch_size),
+        ]
