@@ -68,3 +68,11 @@ class BaseRankModel(object):
 
         return score
 
+
+    def _jacobian(self, y_flat, x):
+        """
+        https://github.com/tensorflow/tensorflow/issues/675
+        for ranknet and lambdarank
+        """
+        loop_vars = [
+            tf.constant(0, tf.int32),
