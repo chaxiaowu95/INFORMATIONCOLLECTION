@@ -90,3 +90,9 @@ class BaseRankModel(object):
     def _get_derivative(self, score, Wk, lambda_ij, x):
         """
         for ranknet and lambdarank
+        :param score:
+        :param Wk:
+        :param lambda_ij:
+        :return:
+        """
+        # dsi_dWk = tf.map_fn(lambda s: tf.gradients(s, [Wk])[0], score) # do not work
