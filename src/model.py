@@ -85,3 +85,8 @@ class BaseRankModel(object):
             loop_vars)
 
         return jacobian.stack()
+
+
+    def _get_derivative(self, score, Wk, lambda_ij, x):
+        """
+        for ranknet and lambdarank
