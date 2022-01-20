@@ -104,3 +104,6 @@ class BaseRankModel(object):
             axis=0)
         grad = tf.reduce_mean(tf.reshape(lambda_ij, shape) * dsi_dWk_minus_dsj_dWk, axis=[0, 1])
         return tf.reshape(grad, tf.shape(Wk))
+
+
+    def _get_train_op(self, loss):
