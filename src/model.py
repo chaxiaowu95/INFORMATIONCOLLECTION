@@ -96,3 +96,5 @@ class BaseRankModel(object):
         :return:
         """
         # dsi_dWk = tf.map_fn(lambda s: tf.gradients(s, [Wk])[0], score) # do not work
+        # dsi_dWk = tf.stack([tf.gradients(si, x)[0] for si in tf.unstack(score, axis=1)], axis=2) # do not work
+        dsi_dWk = self._jacobian(score, Wk)
