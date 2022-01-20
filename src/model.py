@@ -98,3 +98,9 @@ class BaseRankModel(object):
         # dsi_dWk = tf.map_fn(lambda s: tf.gradients(s, [Wk])[0], score) # do not work
         # dsi_dWk = tf.stack([tf.gradients(si, x)[0] for si in tf.unstack(score, axis=1)], axis=2) # do not work
         dsi_dWk = self._jacobian(score, Wk)
+        dsi_dWk_minus_dsj_dWk = tf.expand_dims(dsi_dWk, 1) - tf.expand_dims(dsi_dWk, 0)
+        shape = tf.concat(
+            [tf.shape(lambda_ij), tf.ones([tf.rank(dsi_dWk_minus_dsj_dWk) - tf.rank(lambda_ij)], dtype=tf.int32)],
+            axis=0)
+        grad = tf.reduce_mean(tf.reshape(lambda_ij, shape) * dsi_dWk_minus_dsj_dWk, axis=[0, 1])
+        return tf.reshape(grad, tf.shape(Wk))
