@@ -107,3 +107,9 @@ class BaseRankModel(object):
 
 
     def _get_train_op(self, loss):
+        """
+        for model that gradient can be computed with respect to loss, e.g., LogisticRegression and RankNet
+        """
+        with tf.name_scope("optimization"):
+            if self.params["optimizer_type"] == "nadam":
+                optimizer = NadamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
