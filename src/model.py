@@ -134,3 +134,6 @@ class BaseRankModel(object):
         sess = tf.Session(config=config)
         sess.run(tf.global_variables_initializer())
         # max_to_keep=None, keep all the models
+        saver = tf.train.Saver(max_to_keep=None)
+        return sess, saver
+
