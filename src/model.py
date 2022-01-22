@@ -118,3 +118,15 @@ class BaseRankModel(object):
             elif self.params["optimizer_type"] == "adam":
                 optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
                                                    beta2=self.params["beta2"], epsilon=1e-8)
+
+            update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+            with tf.control_dependencies(update_ops):
+                train_op = optimizer.minimize(loss, global_step=self.global_step)
+
+        return train_op
+
+
+    def _init_session(self):
+        config = tf.ConfigProto(device_count={"gpu": 1})
+        config.gpu_options.allow_growth = True
+        config.intra_op_parallelism_threads = 4
