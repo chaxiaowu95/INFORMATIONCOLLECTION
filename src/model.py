@@ -130,3 +130,7 @@ class BaseRankModel(object):
         config = tf.ConfigProto(device_count={"gpu": 1})
         config.gpu_options.allow_growth = True
         config.intra_op_parallelism_threads = 4
+        config.inter_op_parallelism_threads = 4
+        sess = tf.Session(config=config)
+        sess.run(tf.global_variables_initializer())
+        # max_to_keep=None, keep all the models
