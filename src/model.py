@@ -113,3 +113,8 @@ class BaseRankModel(object):
         with tf.name_scope("optimization"):
             if self.params["optimizer_type"] == "nadam":
                 optimizer = NadamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
+                                           beta2=self.params["beta2"], epsilon=1e-8,
+                                           schedule_decay=self.params["schedule_decay"])
+            elif self.params["optimizer_type"] == "adam":
+                optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
+                                                   beta2=self.params["beta2"], epsilon=1e-8)
