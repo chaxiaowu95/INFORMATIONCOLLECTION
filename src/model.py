@@ -145,3 +145,10 @@ class BaseRankModel(object):
 
 
     def restore_session(self):
+        self.saver.restore(self.sess, self.params["offline_model_dir"] + "/model.checkpoint")
+
+
+    def _get_batch_index(self, seq, step):
+        n = len(seq)
+        res = []
+        for i in range(0, n, step):
