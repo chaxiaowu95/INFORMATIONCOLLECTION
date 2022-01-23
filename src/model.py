@@ -137,3 +137,8 @@ class BaseRankModel(object):
         saver = tf.train.Saver(max_to_keep=None)
         return sess, saver
 
+
+    def save_session(self):
+        # write graph for freeze_graph.py
+        tf.train.write_graph(self.sess.graph.as_graph_def(), self.params["offline_model_dir"], "graph.pb", as_text=True)
+        self.saver.save(self.sess, self.params["offline_model_dir"] + "/model.checkpoint")
