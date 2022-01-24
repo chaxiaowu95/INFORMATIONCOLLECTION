@@ -170,3 +170,9 @@ class BaseRankModel(object):
         }
 
         return feed_dict
+
+
+    def fit(self, X, validation_data):
+        start_time = time.time()
+        l = X["feature"].shape[0]
+        self.logger.info("fit on %d sample" % l)
