@@ -152,3 +152,7 @@ class BaseRankModel(object):
         n = len(seq)
         res = []
         for i in range(0, n, step):
+            res.append(seq[i:i + step])
+        # last batch
+        if len(res) * step < n:
+            res.append(seq[len(res) * step:])
