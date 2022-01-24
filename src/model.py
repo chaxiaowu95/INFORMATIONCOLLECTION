@@ -162,3 +162,11 @@ class BaseRankModel(object):
     def _get_feed_dict(self, X, idx, training=False):
         feed_dict = {
             self.feature: X["feature"][idx],
+            self.label: X["label"][idx].reshape((-1, 1)),
+            self.qid: X["qid"][idx].reshape((-1, 1)),
+            self.sorted_label: np.sort(X["label"][idx].reshape((-1, 1)))[::-1],
+            self.training: training,
+            self.batch_size: len(idx),
+        }
+
+        return feed_dict
