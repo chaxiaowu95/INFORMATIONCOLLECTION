@@ -156,3 +156,9 @@ class BaseRankModel(object):
         # last batch
         if len(res) * step < n:
             res.append(seq[len(res) * step:])
+        return res
+
+
+    def _get_feed_dict(self, X, idx, training=False):
+        feed_dict = {
+            self.feature: X["feature"][idx],
