@@ -180,3 +180,6 @@ class BaseRankModel(object):
         num_qid_unique = len(qid_unique)
         if self.params["batch_sampling_method"] == "group":
             train_idx_shuffle = np.arange(num_qid_unique)
+        else:
+            train_idx_shuffle = np.arange(l)
+        total_loss = 0.
