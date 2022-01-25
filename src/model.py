@@ -176,3 +176,7 @@ class BaseRankModel(object):
         start_time = time.time()
         l = X["feature"].shape[0]
         self.logger.info("fit on %d sample" % l)
+        qid_unique = np.unique(X["qid"])
+        num_qid_unique = len(qid_unique)
+        if self.params["batch_sampling_method"] == "group":
+            train_idx_shuffle = np.arange(num_qid_unique)
