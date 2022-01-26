@@ -197,3 +197,6 @@ class BaseRankModel(object):
         else:
             self.logger.info(
                 "[epoch-{}, batch-{}] -- Train Loss: {:5f} NDCG: {:5f} ({:5f}) ERR: {:5f} -- {:5f} s".format(
+                    0, 0, loss_mean_train, ndcg_mean_train, ndcg_all_mean_train, err_mean_train,
+                    time.time() - start_time))
+        for epoch in range(self.params["epoch"]):
