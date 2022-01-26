@@ -183,3 +183,11 @@ class BaseRankModel(object):
         else:
             train_idx_shuffle = np.arange(l)
         total_loss = 0.
+        loss_decay = 0.9
+        total_batch = 0
+        # evaluate before training
+        loss_mean_train, err_mean_train, ndcg_mean_train, ndcg_all_mean_train = self.evaluate(X)
+        if validation_data is not None:
+            loss_mean_valid, err_mean_valid, ndcg_mean_valid, ndcg_all_mean_valid = self.evaluate(validation_data)
+            self.logger.info(
+                "[epoch-{}, batch-{}] -- Train Loss: {:5f} NDCG: {:5f} ({:5f}) ERR: {:5f}  -- Valid Loss: {:5f} NDCG: {:5f} ({:5f}) ERR: {:5f} -- {:5f} s".format(
