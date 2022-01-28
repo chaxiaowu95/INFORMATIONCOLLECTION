@@ -209,3 +209,8 @@ class BaseRankModel(object):
                 if self.params["batch_sampling_method"] == "group":
                     ind = utils._get_intersect_index(X["qid"], qid_unique[idx])
                 else:
+                    ind = idx
+                feed_dict = self._get_feed_dict(X, ind, training=True)
+                loss, lr, opt = self.sess.run((self.loss, self.learning_rate, self.train_op), feed_dict=feed_dict)
+                total_loss = loss_decay * total_loss + (1. - loss_decay) * loss
+                total_batch += 1
