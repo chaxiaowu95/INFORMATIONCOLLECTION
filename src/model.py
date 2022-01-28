@@ -200,3 +200,12 @@ class BaseRankModel(object):
                     0, 0, loss_mean_train, ndcg_mean_train, ndcg_all_mean_train, err_mean_train,
                     time.time() - start_time))
         for epoch in range(self.params["epoch"]):
+            self.logger.info("epoch: %d" % (epoch + 1))
+            np.random.seed(epoch)
+            if self.params["shuffle"]:
+                np.random.shuffle(train_idx_shuffle)
+            batches = self._get_batch_index(train_idx_shuffle, self.params["batch_size"])
+            for i, idx in enumerate(batches):
+                if self.params["batch_sampling_method"] == "group":
+                    ind = utils._get_intersect_index(X["qid"], qid_unique[idx])
+                else:
