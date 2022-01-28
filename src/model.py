@@ -214,3 +214,9 @@ class BaseRankModel(object):
                 loss, lr, opt = self.sess.run((self.loss, self.learning_rate, self.train_op), feed_dict=feed_dict)
                 total_loss = loss_decay * total_loss + (1. - loss_decay) * loss
                 total_batch += 1
+                if total_batch % self.params["eval_every_num_update"] == 0:
+                    loss_mean_train, err_mean_train, ndcg_mean_train, ndcg_all_mean_train = self.evaluate(X)
+                    if validation_data is not None:
+                        loss_mean_valid, err_mean_valid, ndcg_mean_valid, ndcg_all_mean_valid = self.evaluate(validation_data)
+                        self.logger.info(
+                            "[epoch-{}, batch-{}] -- Train Loss: {:5f} NDCG: {:5f} ({:5f}) ERR: {:5f}  -- Valid Loss: {:5f} NDCG: {:5f} ({:5f}) ERR: {:5f} -- {:5f} s".format(
