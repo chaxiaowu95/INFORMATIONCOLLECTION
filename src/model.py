@@ -226,3 +226,9 @@ class BaseRankModel(object):
                         self.logger.info(
                             "[epoch-{}, batch-{}] -- Train Loss: {:5f} NDCG: {:5f} ({:5f}) ERR: {:5f} -- {:5f} s".format(
                                 epoch + 1, total_batch, loss_mean_train, ndcg_mean_train, ndcg_all_mean_train, err_mean_train,
+                                time.time() - start_time))
+
+
+    def predict(self, X):
+        l = X["feature"].shape[0]
+        train_idx = np.arange(l)
