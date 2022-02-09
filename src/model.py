@@ -232,3 +232,6 @@ class BaseRankModel(object):
     def predict(self, X):
         l = X["feature"].shape[0]
         train_idx = np.arange(l)
+        batches = self._get_batch_index(train_idx, self.params["batch_size"])
+        y_pred = []
+        y_pred_append = y_pred.append
