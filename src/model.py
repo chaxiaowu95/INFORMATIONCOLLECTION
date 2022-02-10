@@ -245,3 +245,10 @@ class BaseRankModel(object):
 
     def evaluate(self, X):
         qid_unique = np.unique(X["qid"])
+        n = len(qid_unique)
+        losses = np.zeros(n)
+        ndcgs = np.zeros(n)
+        ndcgs_all = np.zeros(n)
+        errs = np.zeros(n)
+        for e,qid in enumerate(qid_unique):
+            ind = np.where(X["qid"] == qid)[0]
