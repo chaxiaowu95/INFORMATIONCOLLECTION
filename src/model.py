@@ -252,3 +252,12 @@ class BaseRankModel(object):
         errs = np.zeros(n)
         for e,qid in enumerate(qid_unique):
             ind = np.where(X["qid"] == qid)[0]
+            feed_dict = self._get_feed_dict(X, ind, training=False)
+            loss, score = self.sess.run((self.loss, self.score), feed_dict=feed_dict)
+            df = pd.DataFrame({"label": X["label"][ind].flatten(), "score": score.flatten()})
+            df.sort_values("score", ascending=False, inplace=True)
+
+            losses[e] = loss
+            ndcgs[e] = ndcg(df["label"])
+            ndcgs_all[e] = ndcg(df["label"], top_ten=False)
+            errs[e] = calc_err(df["label"])
