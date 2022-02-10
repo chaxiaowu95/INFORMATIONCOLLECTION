@@ -235,3 +235,8 @@ class BaseRankModel(object):
         batches = self._get_batch_index(train_idx, self.params["batch_size"])
         y_pred = []
         y_pred_append = y_pred.append
+        for idx in batches:
+            feed_dict = self._get_feed_dict(X, idx, training=False)
+            pred = self.sess.run((self.score), feed_dict=feed_dict)
+            y_pred_append(pred)
+        y_pred = np.vstack(y_pred).reshape((-1, 1))
