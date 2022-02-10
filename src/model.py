@@ -240,3 +240,8 @@ class BaseRankModel(object):
             pred = self.sess.run((self.score), feed_dict=feed_dict)
             y_pred_append(pred)
         y_pred = np.vstack(y_pred).reshape((-1, 1))
+        return y_pred
+
+
+    def evaluate(self, X):
+        qid_unique = np.unique(X["qid"])
