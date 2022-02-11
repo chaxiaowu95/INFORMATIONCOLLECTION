@@ -266,3 +266,9 @@ class BaseRankModel(object):
         ndcgs_all_mean = np.mean(ndcgs_all)
         errs_mean = np.mean(errs)
         return losses_mean, errs_mean, ndcgs_mean, ndcgs_all_mean
+
+
+class DNN(BaseRankModel):
+
+    def __init__(self, model_name, params, logger, training=True):
+        super(DNN, self).__init__(model_name, params, logger, training)
