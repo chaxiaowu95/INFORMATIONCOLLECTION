@@ -261,3 +261,8 @@ class BaseRankModel(object):
             ndcgs[e] = ndcg(df["label"])
             ndcgs_all[e] = ndcg(df["label"], top_ten=False)
             errs[e] = calc_err(df["label"])
+        losses_mean = np.mean(losses)
+        ndcgs_mean = np.mean(ndcgs)
+        ndcgs_all_mean = np.mean(ndcgs_all)
+        errs_mean = np.mean(errs)
+        return losses_mean, errs_mean, ndcgs_mean, ndcgs_all_mean
