@@ -276,3 +276,7 @@ class DNN(BaseRankModel):
     def _build_model(self):
         # score
         score = logits = self._score_fn(self.feature)
+
+        logloss = tf.nn.sigmoid_cross_entropy_with_logits(logits=logits, labels=self.label)
+        loss = tf.reduce_mean(logloss)
+        num_pairs = tf.shape(self.feature)[0]
