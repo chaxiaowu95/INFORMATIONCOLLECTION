@@ -272,3 +272,7 @@ class DNN(BaseRankModel):
 
     def __init__(self, model_name, params, logger, training=True):
         super(DNN, self).__init__(model_name, params, logger, training)
+
+    def _build_model(self):
+        # score
+        score = logits = self._score_fn(self.feature)
