@@ -280,3 +280,11 @@ class DNN(BaseRankModel):
         logloss = tf.nn.sigmoid_cross_entropy_with_logits(logits=logits, labels=self.label)
         loss = tf.reduce_mean(logloss)
         num_pairs = tf.shape(self.feature)[0]
+
+        return loss, num_pairs, score, self._get_train_op(loss)
+
+
+class LogisticRegression(DNN):
+
+    def __init__(self, model_name, params, logger, training=True):
+        super(LogisticRegression, self).__init__(model_name, params, logger, training)
