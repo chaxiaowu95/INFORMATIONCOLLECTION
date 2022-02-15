@@ -293,3 +293,9 @@ class LogisticRegression(DNN):
     def _score_fn_inner(self, x, reuse=False):
         score = tf.layers.dense(x, 1, activation=None,
                                 kernel_initializer=tf.glorot_uniform_initializer(seed=self.params["random_seed"]))
+        return score
+
+
+class RankNet(BaseRankModel):
+
+    def __init__(self, model_name, params, logger, training=True):
