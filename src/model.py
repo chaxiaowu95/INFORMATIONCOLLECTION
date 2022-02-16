@@ -305,3 +305,8 @@ class RankNet(BaseRankModel):
     def _build_model(self):
         if self.params["factorization"]:
             return self._build_factorized_model()
+        else:
+            return self._build_unfactorized_model()
+
+
+    def _build_unfactorized_model(self):
