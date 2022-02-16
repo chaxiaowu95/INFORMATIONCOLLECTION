@@ -299,3 +299,9 @@ class LogisticRegression(DNN):
 class RankNet(BaseRankModel):
 
     def __init__(self, model_name, params, logger, training=True):
+        super(RankNet, self).__init__(model_name, params, logger, training)
+
+
+    def _build_model(self):
+        if self.params["factorization"]:
+            return self._build_factorized_model()
