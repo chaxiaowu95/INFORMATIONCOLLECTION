@@ -315,3 +315,11 @@ class RankNet(BaseRankModel):
 
         #
         S_ij = self.label - tf.transpose(self.label)
+        S_ij = tf.maximum(tf.minimum(1., S_ij), -1.)
+        P_ij = (1 / 2) * (1 + S_ij)
+        s_i_minus_s_j = logits = score - tf.transpose(score)
+
+        logloss = tf.nn.sigmoid_cross_entropy_with_logits(logits=s_i_minus_s_j, labels=P_ij)
+
+        # only extracted the loss of pairs of the same group
+        mask1 = tf.equal(self.qid - tf.transpose(self.qid), 0)
