@@ -323,3 +323,6 @@ class RankNet(BaseRankModel):
 
         # only extracted the loss of pairs of the same group
         mask1 = tf.equal(self.qid - tf.transpose(self.qid), 0)
+        mask1 = tf.cast(mask1, tf.float32)
+        # exclude the pair of sample and itself
+        n = tf.shape(self.feature)[0]
