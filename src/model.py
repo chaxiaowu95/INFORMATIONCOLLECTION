@@ -333,3 +333,12 @@ class RankNet(BaseRankModel):
         loss = tf.cond(tf.equal(num_pairs, 0), lambda: 0., lambda: tf.reduce_sum(logloss * mask) / num_pairs)
 
         return loss, num_pairs, score, self._get_train_op(loss)
+
+
+    def _build_factorized_model(self):
+        # score
+        score = self._score_fn(self.feature)
+
+        #
+        S_ij = self.label - tf.transpose(self.label)
+        S_ij = tf.maximum(tf.minimum(1., S_ij), -1.)
