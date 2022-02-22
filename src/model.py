@@ -359,3 +359,8 @@ class RankNet(BaseRankModel):
         num_pairs = tf.reduce_sum(mask)
 
         loss = tf.cond(tf.equal(num_pairs, 0), lambda: 0., lambda: tf.reduce_sum(logloss * mask) / num_pairs)
+
+        lambda_ij = lambda_ij * mask
+
+        vars = tf.trainable_variables()
+        grads = [self._get_derivative(score, Wk, lambda_ij, self.feature) for Wk in vars]
