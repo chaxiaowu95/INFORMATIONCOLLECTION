@@ -394,3 +394,7 @@ class LambdaRank(BaseRankModel):
         #
         S_ij = self.label - tf.transpose(self.label)
         S_ij = tf.maximum(tf.minimum(1., S_ij), -1.)
+        P_ij = (1 / 2) * (1 + S_ij)
+        s_i_minus_s_j = logits = score - tf.transpose(score)
+        sigma = self.params["sigma"]
+        lambda_ij = sigma * ((1 / 2) * (1 - S_ij) - tf.nn.sigmoid(-sigma*s_i_minus_s_j))
