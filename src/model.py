@@ -380,3 +380,11 @@ class RankNet(BaseRankModel):
 
         return loss, num_pairs, score, train_op
 
+
+class LambdaRank(BaseRankModel):
+
+    def __init__(self, model_name, params, logger, training=True):
+        super(LambdaRank, self).__init__(model_name, params, logger, training)
+
+
+    def _build_model(self):
