@@ -398,3 +398,6 @@ class LambdaRank(BaseRankModel):
         s_i_minus_s_j = logits = score - tf.transpose(score)
         sigma = self.params["sigma"]
         lambda_ij = sigma * ((1 / 2) * (1 - S_ij) - tf.nn.sigmoid(-sigma*s_i_minus_s_j))
+        # lambda_ij = -sigma * tf.nn.sigmoid(-sigma*s_i_minus_s_j)
+
+        logloss = tf.nn.sigmoid_cross_entropy_with_logits(logits=s_i_minus_s_j, labels=P_ij)
