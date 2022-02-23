@@ -388,3 +388,9 @@ class LambdaRank(BaseRankModel):
 
 
     def _build_model(self):
+        # score
+        score = self._score_fn(self.feature)
+
+        #
+        S_ij = self.label - tf.transpose(self.label)
+        S_ij = tf.maximum(tf.minimum(1., S_ij), -1.)
