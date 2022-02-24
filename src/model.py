@@ -401,3 +401,8 @@ class LambdaRank(BaseRankModel):
         # lambda_ij = -sigma * tf.nn.sigmoid(-sigma*s_i_minus_s_j)
 
         logloss = tf.nn.sigmoid_cross_entropy_with_logits(logits=s_i_minus_s_j, labels=P_ij)
+
+        # only extracted the loss of pairs of the same group
+        mask1 = tf.equal(self.qid - tf.transpose(self.qid), 0)
+        mask1 = tf.cast(mask1, tf.float32)
+        # exclude the pair of sample and itself
