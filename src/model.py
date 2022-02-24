@@ -410,3 +410,9 @@ class LambdaRank(BaseRankModel):
         mask2 = tf.ones([n, n]) - tf.diag(tf.ones([n]))
         mask = mask1 * mask2
         num_pairs = tf.reduce_sum(mask)
+
+        loss = tf.cond(tf.equal(num_pairs, 0), lambda: 0., lambda: tf.reduce_sum(logloss * mask) / num_pairs)
+
+        lambda_ij = lambda_ij * mask
+
+        # multiply by delta ndcg
