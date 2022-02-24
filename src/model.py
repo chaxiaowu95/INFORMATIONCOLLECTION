@@ -416,3 +416,11 @@ class LambdaRank(BaseRankModel):
         lambda_ij = lambda_ij * mask
 
         # multiply by delta ndcg
+        # current dcg
+        index = tf.reshape(tf.range(1., tf.cast(self.batch_size, dtype=tf.float32) + 1), tf.shape(self.label))
+        cg_discount = tf.log(1. + index)
+        rel = 2 ** self.label - 1
+        sorted_rel = 2 ** self.sorted_label - 1
+        dcg_m = rel / cg_discount
+        dcg = tf.reduce_sum(dcg_m)
+        # every possible swapped dcg
