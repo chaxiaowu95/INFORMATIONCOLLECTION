@@ -424,3 +424,9 @@ class LambdaRank(BaseRankModel):
         dcg_m = rel / cg_discount
         dcg = tf.reduce_sum(dcg_m)
         # every possible swapped dcg
+        stale_ij = tf.tile(dcg_m, [1, self.batch_size])
+        new_ij = rel / tf.transpose(cg_discount)
+        stale_ji = tf.transpose(stale_ij)
+        new_ji = tf.transpose(new_ij)
+        # new dcg
+        dcg_new = dcg - stale_ij + new_ij - stale_ji + new_ji
