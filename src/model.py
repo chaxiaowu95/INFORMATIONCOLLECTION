@@ -406,3 +406,7 @@ class LambdaRank(BaseRankModel):
         mask1 = tf.equal(self.qid - tf.transpose(self.qid), 0)
         mask1 = tf.cast(mask1, tf.float32)
         # exclude the pair of sample and itself
+        n = tf.shape(self.feature)[0]
+        mask2 = tf.ones([n, n]) - tf.diag(tf.ones([n]))
+        mask = mask1 * mask2
+        num_pairs = tf.reduce_sum(mask)
