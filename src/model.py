@@ -437,3 +437,6 @@ class LambdaRank(BaseRankModel):
         lambda_ij = lambda_ij * ndcg_delta
 
         vars = tf.trainable_variables()
+        grads = [self._get_derivative(score, Wk, lambda_ij, self.feature) for Wk in vars]
+
+        with tf.name_scope("optimization"):
