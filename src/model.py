@@ -430,3 +430,5 @@ class LambdaRank(BaseRankModel):
         new_ji = tf.transpose(new_ij)
         # new dcg
         dcg_new = dcg - stale_ij + new_ij - stale_ji + new_ji
+        # delta ndcg
+        # sorted_label = tf.contrib.framework.sort(self.label, direction="DESCENDING")
