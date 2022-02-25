@@ -432,3 +432,8 @@ class LambdaRank(BaseRankModel):
         dcg_new = dcg - stale_ij + new_ij - stale_ji + new_ji
         # delta ndcg
         # sorted_label = tf.contrib.framework.sort(self.label, direction="DESCENDING")
+        dcg_max = tf.reduce_sum(sorted_rel / cg_discount)
+        ndcg_delta = tf.abs(dcg_new - dcg) / dcg_max
+        lambda_ij = lambda_ij * ndcg_delta
+
+        vars = tf.trainable_variables()
