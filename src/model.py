@@ -450,3 +450,7 @@ class LambdaRank(BaseRankModel):
 
             update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
             with tf.control_dependencies(update_ops):
+                train_op = optimizer.apply_gradients(zip(grads, vars))
+
+        return loss, num_pairs, score, train_op
+
