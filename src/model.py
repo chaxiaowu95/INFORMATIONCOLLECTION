@@ -440,3 +440,5 @@ class LambdaRank(BaseRankModel):
         grads = [self._get_derivative(score, Wk, lambda_ij, self.feature) for Wk in vars]
 
         with tf.name_scope("optimization"):
+            if self.params["optimizer_type"] == "nadam":
+                optimizer = NadamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
