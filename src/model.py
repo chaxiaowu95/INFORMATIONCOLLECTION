@@ -442,3 +442,11 @@ class LambdaRank(BaseRankModel):
         with tf.name_scope("optimization"):
             if self.params["optimizer_type"] == "nadam":
                 optimizer = NadamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
+                                           beta2=self.params["beta2"], epsilon=1e-8,
+                                           schedule_decay=self.params["schedule_decay"])
+            elif self.params["optimizer_type"] == "adam":
+                optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate, beta1=self.params["beta1"],
+                                                   beta2=self.params["beta2"], epsilon=1e-8)
+
+            update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+            with tf.control_dependencies(update_ops):
