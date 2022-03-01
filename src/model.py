@@ -454,3 +454,8 @@ class LambdaRank(BaseRankModel):
 
         return loss, num_pairs, score, train_op
 
+
+class ListNet(BaseRankModel):
+
+    def __init__(self, model_name, params, logger, training=True):
+        super(ListNet, self).__init__(model_name, params, logger, training)
