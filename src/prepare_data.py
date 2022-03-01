@@ -1,3 +1,3 @@
 
 import os
-import numpy
+import numpy as 
