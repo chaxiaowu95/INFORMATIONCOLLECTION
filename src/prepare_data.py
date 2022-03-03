@@ -3,4 +3,4 @@ import os
 import numpy as np
 
 
-label_file_pat = "../dat
+label_file_pat = "../data/proc
