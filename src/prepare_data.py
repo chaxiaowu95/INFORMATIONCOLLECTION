@@ -8,4 +8,4 @@ group_file_pat = "../data/processed/%s_group.npy"
 feature_file_pat = "../data/processed/%s_feature.npy"
 
 
-def con
+def conve
