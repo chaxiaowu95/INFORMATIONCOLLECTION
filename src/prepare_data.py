@@ -9,4 +9,4 @@ feature_file_pat = "../data/processed/%s_feature.npy"
 
 
 def convert(type):
-    data_path = os.path.join("..", "data/MQ
+    data_path = os.path.join("..", "data/MQ2008/
