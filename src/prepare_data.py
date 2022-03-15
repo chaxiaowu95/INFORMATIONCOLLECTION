@@ -12,4 +12,4 @@ def convert(type):
     data_path = os.path.join("..", "data/MQ2008/Fold1/"+ type + ".txt")
 
     labels = []
-    featu
+    feature
