@@ -14,4 +14,5 @@ def convert(type):
     labels = []
     features = []
     groups = []
-    with open(data_path, "r") a
+    with open(data_path, "r") as f:
+    
