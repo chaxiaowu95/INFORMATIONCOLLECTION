@@ -15,4 +15,4 @@ def convert(type):
     features = []
     groups = []
     with open(data_path, "r") as f:
-        for line in
+        for line in f:
