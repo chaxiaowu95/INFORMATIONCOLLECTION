@@ -16,4 +16,4 @@ def convert(type):
     groups = []
     with open(data_path, "r") as f:
         for line in f:
-        
+           
