@@ -18,4 +18,5 @@ def convert(type):
         for line in f:
             if not line:
                 break
-            if "#" in line
+            if "#" in line:
+   
