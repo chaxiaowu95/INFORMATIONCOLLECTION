@@ -18,3 +18,4 @@ def convert(type):
         for line in f:
             if not line:
                 break
+     
