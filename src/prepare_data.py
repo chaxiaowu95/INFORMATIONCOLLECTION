@@ -20,4 +20,4 @@ def convert(type):
                 break
             if "#" in line:
                 line = line[:line.index("#")]
-            splits 
+            splits = li
