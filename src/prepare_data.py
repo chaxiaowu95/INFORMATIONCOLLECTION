@@ -19,4 +19,5 @@ def convert(type):
             if not line:
                 break
             if "#" in line:
-                line = line[:line.index("#
+                line = line[:line.index("#")]
+    
