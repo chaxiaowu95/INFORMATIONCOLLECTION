@@ -21,4 +21,4 @@ def convert(type):
             if "#" in line:
                 line = line[:line.index("#")]
             splits = line.strip().split(" ")
-            labels.a
+            labels.append(sp
