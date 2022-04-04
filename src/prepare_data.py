@@ -22,4 +22,4 @@ def convert(type):
                 line = line[:line.index("#")]
             splits = line.strip().split(" ")
             labels.append(splits[0])
-            groups.append(splits
+            groups.append(splits[1].spl
