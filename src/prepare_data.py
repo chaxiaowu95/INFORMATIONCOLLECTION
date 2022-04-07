@@ -23,4 +23,4 @@ def convert(type):
             splits = line.strip().split(" ")
             labels.append(splits[0])
             groups.append(splits[1].split(":")[1])
-            features.append([split.
+            features.append([split.sp
