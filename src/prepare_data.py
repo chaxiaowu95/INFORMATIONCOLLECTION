@@ -24,4 +24,4 @@ def convert(type):
             labels.append(splits[0])
             groups.append(splits[1].split(":")[1])
             features.append([split.split(":")[1] for split in splits[2:]])
-    np.save(label_
+    np.save(label_file_
