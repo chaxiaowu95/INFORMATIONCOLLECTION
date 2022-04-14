@@ -25,4 +25,4 @@ def convert(type):
             groups.append(splits[1].split(":")[1])
             features.append([split.split(":")[1] for split in splits[2:]])
     np.save(label_file_pat % (type), np.array(labels, dtype=int))
-    np.save(group_file_pat%(type), n
+    np.save(group_file_pat%(type), np.ar
