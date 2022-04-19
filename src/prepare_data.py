@@ -29,4 +29,4 @@ def convert(type):
     np.save(feature_file_pat%(type), np.array(features, dtype=float))
 
 
-if __name__ == "__ma
+if __name__ == "__main__"
