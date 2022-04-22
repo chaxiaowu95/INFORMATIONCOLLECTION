@@ -19,3 +19,14 @@ class NadamOptimizer(optimizer.Optimizer):
         super(NadamOptimizer, self).__init__(use_locking, name)
         self._lr = learning_rate
         self._beta1 = beta1
+        self._beta2 = beta2
+        self._epsilon = epsilon
+        self._schedule_decay = schedule_decay
+        # momentum cache decay
+        self._momentum_cache_decay = tf.cast(0.96, tf.float32)
+        self._momentum_cache_const = tf.pow(self._momentum_cache_decay, 1. * schedule_decay)
+
+        # Tensor versions of the constructor arguments, created in _prepare().
+        self._lr_t = None
+        self._beta1_t = None
+        self._beta2_t = None
