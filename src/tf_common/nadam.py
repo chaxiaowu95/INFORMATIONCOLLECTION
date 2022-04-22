@@ -30,3 +30,12 @@ class NadamOptimizer(optimizer.Optimizer):
         self._lr_t = None
         self._beta1_t = None
         self._beta2_t = None
+        self._epsilon_t = None
+        self._schedule_decay_t = None
+
+        # Variables to accumulate the powers of the beta parameters.
+        # Created in _create_slots when we know the variables to optimize.
+        self._beta1_power = None
+        self._beta2_power = None
+        self._iterations = None
+        self._m_schedule = None
