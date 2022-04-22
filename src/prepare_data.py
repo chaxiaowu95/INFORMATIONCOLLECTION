@@ -32,4 +32,4 @@ def convert(type):
 if __name__ == "__main__":
     convert("train")
     convert("vali")
-    conv
+    convert("
