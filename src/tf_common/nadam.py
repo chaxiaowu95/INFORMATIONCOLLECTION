@@ -88,3 +88,6 @@ class NadamOptimizer(optimizer.Optimizer):
 
     """very slow
     we simply use the nadam update rule without warming momentum schedule
+    def _apply_dense(self, grad, var):
+        t = math_ops.cast(self._iterations, var.dtype.base_dtype) + 1.
+        m_schedule = math_ops.cast(self._m_schedule, var.dtype.base_dtype)
