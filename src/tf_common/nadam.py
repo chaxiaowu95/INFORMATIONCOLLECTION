@@ -53,3 +53,6 @@ class NadamOptimizer(optimizer.Optimizer):
 
     def _create_slots(self, var_list):
         # Create the beta1 and beta2 accumulators on the same device as the first
+        # variable. Sort the var_list to make sure this device is consistent across
+        # workers (these need to go on the same PS, otherwise some updates are
+        # silently ignored).
