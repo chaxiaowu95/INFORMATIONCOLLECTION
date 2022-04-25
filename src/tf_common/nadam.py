@@ -46,3 +46,10 @@ class NadamOptimizer(optimizer.Optimizer):
 
     def _prepare(self):
         self._lr_t = ops.convert_to_tensor(self._lr, name="learning_rate")
+        self._beta1_t = ops.convert_to_tensor(self._beta1, name="beta1")
+        self._beta2_t = ops.convert_to_tensor(self._beta2, name="beta2")
+        self._epsilon_t = ops.convert_to_tensor(self._epsilon, name="epsilon")
+        self._schedule_decay_t = ops.convert_to_tensor(self._schedule_decay, name="schedule_decay")
+
+    def _create_slots(self, var_list):
+        # Create the beta1 and beta2 accumulators on the same device as the first
