@@ -39,3 +39,10 @@ class NadamOptimizer(optimizer.Optimizer):
         self._beta2_power = None
         self._iterations = None
         self._m_schedule = None
+
+        # Created in SparseApply if needed.
+        self._updated_lr = None
+
+
+    def _prepare(self):
+        self._lr_t = ops.convert_to_tensor(self._lr, name="learning_rate")
