@@ -66,3 +66,6 @@ class NadamOptimizer(optimizer.Optimizer):
             with ops.colocate_with(first_var):
                 self._beta1_power = variable_scope.variable(self._beta1,
                                                             name="beta1_power",
+                                                            trainable=False)
+                self._beta2_power = variable_scope.variable(self._beta2,
+                                                            name="beta2_power",
