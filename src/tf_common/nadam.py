@@ -61,3 +61,8 @@ class NadamOptimizer(optimizer.Optimizer):
         create_new = self._iterations is None
         if not create_new and context.in_graph_mode():
             create_new = (self._iterations.graph is not first_var.graph)
+
+        if create_new:
+            with ops.colocate_with(first_var):
+                self._beta1_power = variable_scope.variable(self._beta1,
+                                                            name="beta1_power",
