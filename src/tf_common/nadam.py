@@ -56,3 +56,8 @@ class NadamOptimizer(optimizer.Optimizer):
         # variable. Sort the var_list to make sure this device is consistent across
         # workers (these need to go on the same PS, otherwise some updates are
         # silently ignored).
+        first_var = min(var_list, key=lambda x: x.name)
+
+        create_new = self._iterations is None
+        if not create_new and context.in_graph_mode():
+            create_new = (self._iterations.graph is not first_var.graph)
