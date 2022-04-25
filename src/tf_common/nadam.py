@@ -69,3 +69,7 @@ class NadamOptimizer(optimizer.Optimizer):
                                                             trainable=False)
                 self._beta2_power = variable_scope.variable(self._beta2,
                                                             name="beta2_power",
+                                                            trainable=False)
+                self._iterations = variable_scope.variable(0.,
+                                                           name="iterations",
+                                                           trainable=False)
