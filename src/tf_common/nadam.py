@@ -73,3 +73,18 @@ class NadamOptimizer(optimizer.Optimizer):
                 self._iterations = variable_scope.variable(0.,
                                                            name="iterations",
                                                            trainable=False)
+                self._m_schedule = variable_scope.variable(1.,
+                                                           name="m_schedule",
+                                                           trainable=False)
+        # Create slots for the first and second moments.
+        for v in var_list:
+            self._zeros_slot(v, "m", self._name)
+            self._zeros_slot(v, "v", self._name)
+
+    def _get_momentum_cache(self, schedule_decay_t, t):
+        return tf.pow(self._momentum_cache_decay, t * schedule_decay_t)
+        # return beta1_t * (1. - 0.5 * (tf.pow(self._momentum_cache_decay, t * schedule_decay_t)))
+
+
+    """very slow
+    we simply use the nadam update rule without warming momentum schedule
