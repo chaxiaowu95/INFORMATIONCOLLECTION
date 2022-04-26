@@ -106,3 +106,10 @@ class NadamOptimizer(optimizer.Optimizer):
 
         # the following equations given in [1]
         # m_t = beta1 * m + (1 - beta1) * g_t
+        m = self.get_slot(var, "m")
+        m_t = state_ops.assign(m, beta1_t * m + (1. - beta1_t) * grad, use_locking=self._use_locking)
+        g_prime = grad / (1. - m_schedule_new)
+        m_t_prime = m_t / (1. - m_schedule_next)
+        m_t_bar = (1. - momentum_cache_t) * g_prime + momentum_cache_t_1 * m_t_prime
+
+        # v_t = beta2 * v + (1 - beta2) * (g_t * g_t)
