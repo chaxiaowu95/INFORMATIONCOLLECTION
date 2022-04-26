@@ -98,3 +98,7 @@ class NadamOptimizer(optimizer.Optimizer):
         schedule_decay_t = math_ops.cast(self._schedule_decay_t, var.dtype.base_dtype)
 
         # Due to the recommendations in [2], i.e. warming momentum schedule
+        # see keras Nadam
+        momentum_cache_t = self._get_momentum_cache(beta1_t, schedule_decay_t, t)
+        momentum_cache_t_1 = self._get_momentum_cache(beta1_t, schedule_decay_t, t+1.)
+        m_schedule_new = m_schedule * momentum_cache_t
