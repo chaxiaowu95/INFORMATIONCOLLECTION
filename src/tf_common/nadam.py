@@ -118,3 +118,5 @@ class NadamOptimizer(optimizer.Optimizer):
         v_t_prime = v_t / (1. - tf.pow(beta2_t, t))
 
         var_update = state_ops.assign_sub(var,
+                                      lr_t * m_t_bar / (tf.sqrt(v_t_prime) + epsilon_t),
+                                      use_locking=self._use_locking)
