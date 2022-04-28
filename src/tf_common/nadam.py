@@ -120,3 +120,9 @@ class NadamOptimizer(optimizer.Optimizer):
         var_update = state_ops.assign_sub(var,
                                       lr_t * m_t_bar / (tf.sqrt(v_t_prime) + epsilon_t),
                                       use_locking=self._use_locking)
+
+        return control_flow_ops.group(*[var_update, m_t, v_t])
+    """
+    # nadam update rule without warming momentum schedule
+    def _apply_dense(self, grad, var):
+        m = self.get_slot(var, "m")
