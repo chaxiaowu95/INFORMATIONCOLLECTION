@@ -113,3 +113,8 @@ class NadamOptimizer(optimizer.Optimizer):
         m_t_bar = (1. - momentum_cache_t) * g_prime + momentum_cache_t_1 * m_t_prime
 
         # v_t = beta2 * v + (1 - beta2) * (g_t * g_t)
+        v = self.get_slot(var, "v")
+        v_t = state_ops.assign(v, beta2_t * v + (1. - beta2_t) * tf.square(grad), use_locking=self._use_locking)
+        v_t_prime = v_t / (1. - tf.pow(beta2_t, t))
+
+        var_update = state_ops.assign_sub(var,
