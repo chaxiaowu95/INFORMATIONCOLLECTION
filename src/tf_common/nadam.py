@@ -135,3 +135,10 @@ class NadamOptimizer(optimizer.Optimizer):
             math_ops.cast(self._beta2_power, var.dtype.base_dtype),
             math_ops.cast(self._lr_t, var.dtype.base_dtype),
             math_ops.cast(self._beta1_t, var.dtype.base_dtype),
+            math_ops.cast(self._beta2_t, var.dtype.base_dtype),
+            math_ops.cast(self._epsilon_t, var.dtype.base_dtype),
+            grad,
+            use_locking=self._use_locking,
+            use_nesterov=True).op
+
+    def _resource_apply_dense(self, grad, var):
