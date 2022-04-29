@@ -159,3 +159,7 @@ class NadamOptimizer(optimizer.Optimizer):
             use_nesterov=True)
 
     # keras Nadam update rule
+    def _apply_sparse(self, grad, var):
+        t = math_ops.cast(self._iterations, var.dtype.base_dtype) + 1.
+        m_schedule = math_ops.cast(self._m_schedule, var.dtype.base_dtype)
+        lr_t = math_ops.cast(self._lr_t, var.dtype.base_dtype)
