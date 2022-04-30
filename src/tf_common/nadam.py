@@ -174,3 +174,8 @@ class NadamOptimizer(optimizer.Optimizer):
         momentum_cache_t_1 = beta1_t * (1. - 0.5 * momentum_cache_power * self._momentum_cache_const)
         m_schedule_new = m_schedule * momentum_cache_t
         m_schedule_next = m_schedule_new * momentum_cache_t_1
+
+        # the following equations given in [1]
+        # m_t = beta1 * m + (1 - beta1) * g_t
+        m = self.get_slot(var, "m")
+        m_t = state_ops.scatter_update(m, grad.indices,
