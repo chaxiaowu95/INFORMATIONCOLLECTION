@@ -170,3 +170,7 @@ class NadamOptimizer(optimizer.Optimizer):
 
         # Due to the recommendations in [2], i.e. warming momentum schedule
         momentum_cache_power = self._get_momentum_cache(schedule_decay_t, t)
+        momentum_cache_t = beta1_t * (1. - 0.5 * momentum_cache_power)
+        momentum_cache_t_1 = beta1_t * (1. - 0.5 * momentum_cache_power * self._momentum_cache_const)
+        m_schedule_new = m_schedule * momentum_cache_t
+        m_schedule_next = m_schedule_new * momentum_cache_t_1
