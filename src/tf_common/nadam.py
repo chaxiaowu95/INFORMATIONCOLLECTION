@@ -179,3 +179,7 @@ class NadamOptimizer(optimizer.Optimizer):
         # m_t = beta1 * m + (1 - beta1) * g_t
         m = self.get_slot(var, "m")
         m_t = state_ops.scatter_update(m, grad.indices,
+                                       beta1_t * array_ops.gather(m, grad.indices) +
+                                       (1. - beta1_t) * grad.values,
+                                       use_locking=self._use_locking)
+        g_prime_slice = grad.values / (1. - m_schedule_new)
