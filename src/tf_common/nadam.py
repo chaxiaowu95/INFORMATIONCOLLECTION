@@ -183,3 +183,8 @@ class NadamOptimizer(optimizer.Optimizer):
                                        (1. - beta1_t) * grad.values,
                                        use_locking=self._use_locking)
         g_prime_slice = grad.values / (1. - m_schedule_new)
+        m_t_prime_slice = array_ops.gather(m_t, grad.indices) / (1. - m_schedule_next)
+        m_t_bar_slice = (1. - momentum_cache_t) * g_prime_slice + momentum_cache_t_1 * m_t_prime_slice
+
+        # v_t = beta2 * v + (1 - beta2) * (g_t * g_t)
+        v = self.get_slot(var, "v")
