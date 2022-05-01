@@ -188,3 +188,11 @@ class NadamOptimizer(optimizer.Optimizer):
 
         # v_t = beta2 * v + (1 - beta2) * (g_t * g_t)
         v = self.get_slot(var, "v")
+        v_t = state_ops.scatter_update(v, grad.indices,
+                                       beta2_t * array_ops.gather(v, grad.indices) +
+                                       (1. - beta2_t) * tf.square(grad.values),
+                                       use_locking=self._use_locking)
+        v_t_prime_slice = array_ops.gather(v_t, grad.indices) / (1. - tf.pow(beta2_t, t))
+
+        var_update = state_ops.scatter_sub(var, grad.indices,
+                                           lr_t * m_t_bar_slice / (math_ops.sqrt(v_t_prime_slice) + epsilon_t),
