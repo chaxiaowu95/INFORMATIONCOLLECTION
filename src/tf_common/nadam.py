@@ -196,3 +196,6 @@ class NadamOptimizer(optimizer.Optimizer):
 
         var_update = state_ops.scatter_sub(var, grad.indices,
                                            lr_t * m_t_bar_slice / (math_ops.sqrt(v_t_prime_slice) + epsilon_t),
+                                           use_locking=self._use_locking)
+
+        return control_flow_ops.group(*[var_update, m_t, v_t])
