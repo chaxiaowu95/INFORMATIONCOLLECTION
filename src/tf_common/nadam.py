@@ -199,3 +199,13 @@ class NadamOptimizer(optimizer.Optimizer):
                                            use_locking=self._use_locking)
 
         return control_flow_ops.group(*[var_update, m_t, v_t])
+
+    def _finish(self, update_ops, name_scope):
+        # Update the power accumulators.
+        with ops.control_dependencies(update_ops):
+            with ops.colocate_with(self._iterations):
+                update_beta1 = self._beta1_power.assign(
+                    self._beta1_power * self._beta1_t,
+                    use_locking=self._use_locking)
+                update_beta2 = self._beta2_power.assign(
+                    self._beta2_power * self._beta2_t,
