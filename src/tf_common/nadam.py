@@ -213,3 +213,7 @@ class NadamOptimizer(optimizer.Optimizer):
                 t = self._iterations + 1.
                 update_iterations = self._iterations.assign(t, use_locking=self._use_locking)
                 momentum_cache_power = self._get_momentum_cache(self._schedule_decay_t, t)
+                momentum_cache_t = self._beta1_t * (1. - 0.5 * momentum_cache_power)
+                update_m_schedule = self._m_schedule.assign(
+                    self._m_schedule * momentum_cache_t,
+                    use_locking=self._use_locking)
