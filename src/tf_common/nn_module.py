@@ -27,3 +27,5 @@ def embed(x, size, dim, seed=0, flatten=False, reduce_sum=False):
     if flatten:
         out = tf.layers.flatten(out)
     if reduce_sum:
+        out = tf.reduce_sum(out, axis=1)
+    return out
