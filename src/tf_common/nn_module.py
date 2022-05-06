@@ -46,3 +46,5 @@ def embed_subword(x, size, dim, sequence_length, seed=0, mask_zero=False, maxlen
         mask = tf.expand_dims(mask, axis=-1)
         mask = tf.cast(mask, tf.float32)
         out = out * mask
+    # None * max_seq_len * embed_dim
+    # according to facebook subword paper, it's sum
