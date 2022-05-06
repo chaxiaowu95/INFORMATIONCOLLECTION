@@ -23,3 +23,7 @@ def embed(x, size, dim, seed=0, flatten=False, reduce_sum=False):
     maxval = std
     emb = tf.Variable(tf.random_uniform([size, dim], minval, maxval, dtype=tf.float32, seed=seed))
     # None * max_seq_len * embed_dim
+    out = tf.nn.embedding_lookup(emb, x)
+    if flatten:
+        out = tf.layers.flatten(out)
+    if reduce_sum:
