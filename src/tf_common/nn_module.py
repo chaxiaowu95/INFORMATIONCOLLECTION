@@ -40,3 +40,9 @@ def embed_subword(x, size, dim, sequence_length, seed=0, mask_zero=False, maxlen
     # None * max_seq_len * max_word_len * embed_dim
     out = tf.nn.embedding_lookup(emb, x)
     if mask_zero:
+        # word_len: None * max_seq_len
+        # mask: shape=None * max_seq_len * max_word_len
+        mask = tf.sequence_mask(sequence_length, maxlen)
+        mask = tf.expand_dims(mask, axis=-1)
+        mask = tf.cast(mask, tf.float32)
+        out = out * mask
