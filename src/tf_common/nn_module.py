@@ -48,3 +48,10 @@ def embed_subword(x, size, dim, sequence_length, seed=0, mask_zero=False, maxlen
         out = out * mask
     # None * max_seq_len * embed_dim
     # according to facebook subword paper, it's sum
+    out = tf.reduce_sum(out, axis=2)
+    return out
+
+
+def word_dropout(x, training, dropout=0, seed=0):
+    # word dropout (dropout the entire embedding for some words)
+    """
