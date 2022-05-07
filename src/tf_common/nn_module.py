@@ -66,3 +66,8 @@ def word_dropout(x, training, dropout=0, seed=0):
 
 #### Step 2
 def fasttext(x):
+    return x
+
+
+def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
+            timedistributed=False, scope_name="textcnn", reuse=False):
