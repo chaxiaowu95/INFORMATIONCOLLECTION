@@ -99,3 +99,10 @@ def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
                     inputs=x,
                     filters=num_filters,
                     kernel_size=filter_size,
+                    padding="same",
+                    activation=None,
+                    strides=1,
+                    reuse=reuse,
+                    name=scope_name_i)
+            if bn:
+                conv = tf.layers.BatchNormalization()(conv, training)
