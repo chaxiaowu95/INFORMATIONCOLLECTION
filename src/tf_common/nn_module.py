@@ -71,3 +71,11 @@ def fasttext(x):
 
 def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
             timedistributed=False, scope_name="textcnn", reuse=False):
+    # x: None * step_dim * embed_dim
+    conv_blocks = []
+    for i, filter_size in enumerate(filter_sizes):
+        scope_name_i = "%s_textcnn_%s"%(str(scope_name), str(filter_size))
+        with tf.variable_scope(scope_name_i, reuse=reuse):
+            if timedistributed:
+                input_shape = tf.shape(x)
+                step_dim = input_shape[1]
