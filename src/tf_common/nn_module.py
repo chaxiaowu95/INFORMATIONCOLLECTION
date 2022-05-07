@@ -84,3 +84,8 @@ def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
                 # None * embed_dim * step_dim
                 x = tf.reshape(x, [input_shape[0] * embed_dim, step_dim, 1])
                 conv = tf.layers.conv1d(
+                    input=x,
+                    filters=1,
+                    kernel_size=filter_size,
+                    padding="same",
+                    activation=None,
