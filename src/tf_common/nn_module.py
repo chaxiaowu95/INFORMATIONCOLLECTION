@@ -106,3 +106,8 @@ def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
                     name=scope_name_i)
             if bn:
                 conv = tf.layers.BatchNormalization()(conv, training)
+            conv = tf.nn.relu(conv)
+            conv_blocks.append(conv)
+    if len(conv_blocks) > 1:
+        z = tf.concat(conv_blocks, axis=-1)
+    else:
