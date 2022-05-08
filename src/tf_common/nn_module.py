@@ -114,3 +114,6 @@ def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
         z = conv_blocks[0]
     return z
 
+
+def textrnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=False, scope_name="textrnn", reuse=False):
+    for i in range(num_layers):
