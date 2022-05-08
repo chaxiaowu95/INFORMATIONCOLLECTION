@@ -111,3 +111,6 @@ def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
     if len(conv_blocks) > 1:
         z = tf.concat(conv_blocks, axis=-1)
     else:
+        z = conv_blocks[0]
+    return z
+
