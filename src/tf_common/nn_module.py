@@ -117,3 +117,8 @@ def textcnn(x, num_filters=8, filter_sizes=[2, 3], bn=False, training=False,
 
 def textrnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=False, scope_name="textrnn", reuse=False):
     for i in range(num_layers):
+        scope_name_i = "%s_textrnn_%s_%s_%s" % (str(scope_name), cell_type, str(i), str(num_units))
+        with tf.variable_scope(scope_name_i, reuse=reuse):
+            if cell_type == "gru":
+                cell_fw = tf.nn.rnn_cell.GRUCell(num_units)
+            elif cell_type == "lstm":
