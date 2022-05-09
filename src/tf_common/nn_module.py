@@ -122,3 +122,9 @@ def textrnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=Fa
             if cell_type == "gru":
                 cell_fw = tf.nn.rnn_cell.GRUCell(num_units)
             elif cell_type == "lstm":
+                cell_fw = tf.nn.rnn_cell.LSTMCell(num_units)
+            if mask_zero:
+                x, _ = tf.nn.dynamic_rnn(cell_fw, x, dtype=tf.float32, sequence_length=sequence_length, scope=scope_name_i)
+            else:
+                x, _ = tf.nn.dynamic_rnn(cell_fw, x, dtype=tf.float32, sequence_length=None, scope=scope_name_i)
+    return x
