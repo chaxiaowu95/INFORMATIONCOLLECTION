@@ -148,3 +148,9 @@ def textbirnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=
                     cell_fw, cell_bw, x, dtype=tf.float32, sequence_length=None, scope=scope_name_i)
             x = tf.concat([output_fw, output_bw], axis=-1)
     return x
+
+
+
+def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name="encode", reuse=False):
+    """
+    :param x: shape=(None,seqlen,dim)
