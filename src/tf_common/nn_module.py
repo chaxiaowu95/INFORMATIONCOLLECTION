@@ -134,3 +134,12 @@ def textbirnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=
     for i in range(num_layers):
         scope_name_i = "%s_textbirnn_%s_%s_%s" % (str(scope_name), cell_type, str(i), str(num_units))
         with tf.variable_scope(scope_name_i, reuse=reuse):
+            if cell_type == "gru":
+                cell_fw = tf.nn.rnn_cell.GRUCell(num_units)
+                cell_bw = tf.nn.rnn_cell.GRUCell(num_units)
+            elif cell_type == "lstm":
+                cell_fw = tf.nn.rnn_cell.LSTMCell(num_units)
+                cell_bw = tf.nn.rnn_cell.LSTMCell(num_units)
+            if mask_zero:
+                (output_fw, output_bw), _ = tf.nn.bidirectional_dynamic_rnn(
+                    cell_fw, cell_bw, x, dtype=tf.float32, sequence_length=sequence_length, scope=scope_name_i)
