@@ -128,3 +128,9 @@ def textrnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=Fa
             else:
                 x, _ = tf.nn.dynamic_rnn(cell_fw, x, dtype=tf.float32, sequence_length=None, scope=scope_name_i)
     return x
+
+
+def textbirnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=False, scope_name="textbirnn", reuse=False):
+    for i in range(num_layers):
+        scope_name_i = "%s_textbirnn_%s_%s_%s" % (str(scope_name), cell_type, str(i), str(num_units))
+        with tf.variable_scope(scope_name_i, reuse=reuse):
