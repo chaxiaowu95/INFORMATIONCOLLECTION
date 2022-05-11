@@ -143,3 +143,8 @@ def textbirnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=
             if mask_zero:
                 (output_fw, output_bw), _ = tf.nn.bidirectional_dynamic_rnn(
                     cell_fw, cell_bw, x, dtype=tf.float32, sequence_length=sequence_length, scope=scope_name_i)
+            else:
+                (output_fw, output_bw), _ = tf.nn.bidirectional_dynamic_rnn(
+                    cell_fw, cell_bw, x, dtype=tf.float32, sequence_length=None, scope=scope_name_i)
+            x = tf.concat([output_fw, output_bw], axis=-1)
+    return x
