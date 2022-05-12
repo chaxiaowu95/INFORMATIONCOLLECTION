@@ -168,3 +168,6 @@ def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name=
             z = fasttext(x)
             out_list.append(z)
             params["encode_dim"] += dim_f
+        elif m == "textcnn":
+            z = textcnn(x, num_filters=params["cnn_num_filters"], filter_sizes=params["cnn_filter_sizes"],
+                        timedistributed=params["cnn_timedistributed"], scope_name=scope_name, reuse=reuse)
