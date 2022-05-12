@@ -198,3 +198,9 @@ def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None
 
     cann't not use `tf.layers.Dense` here
     eij = tf.layers.Dense(1)(x)
+
+    see: https://github.com/tensorflow/tensorflow/issues/13348
+    workaround: specify the feature_dim as input
+    """
+    with tf.variable_scope(scope_name, reuse=reuse):
+        eij = tf.layers.dense(x, 1, activation=tf.nn.tanh,
