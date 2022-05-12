@@ -185,3 +185,9 @@ def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name=
             params["encode_dim"] += dim_b
     z = tf.concat(out_list, axis=-1)
     return z
+
+
+def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None, epsilon=1e-8, seed=0,
+              scope_name="attention", reuse=False):
+    input_shape = tf.shape(x)
+    step_dim = input_shape[1]
