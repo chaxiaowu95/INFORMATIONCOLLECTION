@@ -181,3 +181,7 @@ def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name=
         elif method == "textbirnn":
             z = textbirnn(x, num_units=params["rnn_num_units"], cell_type=params["rnn_cell_type"],
                           sequence_length=sequence_length, mask_zero=mask_zero, scope_name=scope_name, reuse=reuse)
+            out_list.append(z)
+            params["encode_dim"] += dim_b
+    z = tf.concat(out_list, axis=-1)
+    return z
