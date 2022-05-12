@@ -160,3 +160,10 @@ def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name=
     dim_f = params["embedding_dim"]
     dim_c = len(params["cnn_filter_sizes"]) * params["cnn_num_filters"]
     dim_r = params["rnn_num_units"]
+    dim_b = params["rnn_num_units"] * 2
+    out_list = []
+    params["encode_dim"] = 0
+    for m in method.split("+"):
+        if m == "fasttext":
+            z = fasttext(x)
+            out_list.append(z)
