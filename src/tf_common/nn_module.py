@@ -167,3 +167,4 @@ def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name=
         if m == "fasttext":
             z = fasttext(x)
             out_list.append(z)
+            params["encode_dim"] += dim_f
