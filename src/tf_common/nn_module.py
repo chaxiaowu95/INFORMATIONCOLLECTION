@@ -154,3 +154,9 @@ def textbirnn(x, num_units, cell_type, sequence_length, num_layers=1, mask_zero=
 def encode(x, method, params, sequence_length=None, mask_zero=False, scope_name="encode", reuse=False):
     """
     :param x: shape=(None,seqlen,dim)
+    :param params:
+    :return: shape=(None,seqlen,dim)
+    """
+    dim_f = params["embedding_dim"]
+    dim_c = len(params["cnn_filter_sizes"]) * params["cnn_num_filters"]
+    dim_r = params["rnn_num_units"]
