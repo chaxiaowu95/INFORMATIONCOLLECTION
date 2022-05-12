@@ -191,3 +191,10 @@ def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None
               scope_name="attention", reuse=False):
     input_shape = tf.shape(x)
     step_dim = input_shape[1]
+    # feature_dim = input_shape[2]
+    x = tf.reshape(x, [-1, feature_dim])
+    """
+    The last dimension of the inputs to `Dense` should be defined. Found `None`.
+
+    cann't not use `tf.layers.Dense` here
+    eij = tf.layers.Dense(1)(x)
