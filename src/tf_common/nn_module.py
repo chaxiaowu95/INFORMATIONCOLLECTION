@@ -209,3 +209,10 @@ def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None
                               name=scope_name)
     eij = tf.reshape(eij, [-1, step_dim])
     a = tf.exp(eij)
+
+    # apply mask after the exp. will be re-normalized next
+    if mask_zero:
+        # None * step_dim
+        mask = tf.sequence_mask(sequence_length, maxlen)
+        mask = tf.cast(mask, tf.float32)
+        a = a * mask
