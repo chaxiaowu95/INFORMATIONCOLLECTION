@@ -223,3 +223,11 @@ def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None
     a = tf.expand_dims(a, axis=-1)
     return a
 
+
+def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None, mask_zero=False, maxlen=None,
+           bn=False, training=False, seed=0, scope_name="attention", reuse=False):
+    if method == "ave":
+        if mask_zero:
+            # None * step_dim
+            mask = tf.sequence_mask(sequence_length, maxlen)
+            mask = tf.reshape(mask, (-1, tf.shape(x)[1], 1))
