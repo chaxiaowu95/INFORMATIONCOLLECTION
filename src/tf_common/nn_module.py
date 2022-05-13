@@ -204,3 +204,8 @@ def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None
     """
     with tf.variable_scope(scope_name, reuse=reuse):
         eij = tf.layers.dense(x, 1, activation=tf.nn.tanh,
+                              kernel_initializer=tf.glorot_uniform_initializer(seed=seed),
+                              reuse=reuse,
+                              name=scope_name)
+    eij = tf.reshape(eij, [-1, step_dim])
+    a = tf.exp(eij)
