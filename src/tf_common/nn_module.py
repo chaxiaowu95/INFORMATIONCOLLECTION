@@ -221,3 +221,5 @@ def attention(x, feature_dim, sequence_length=None, mask_zero=False, maxlen=None
     a /= tf.cast(tf.reduce_sum(a, axis=1, keep_dims=True) + epsilon, tf.float32)
 
     a = tf.expand_dims(a, axis=-1)
+    return a
+
