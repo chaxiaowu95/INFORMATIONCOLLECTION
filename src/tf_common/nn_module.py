@@ -237,3 +237,6 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
             # in some cases especially in the early stages of training the sum may be almost zero
             epsilon = 1e-8
             z /= tf.cast(l + epsilon, tf.float32)
+        else:
+            z = tf.reduce_mean(x, axis=1)
+    elif method == "sum":
