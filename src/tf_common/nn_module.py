@@ -240,3 +240,11 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
         else:
             z = tf.reduce_mean(x, axis=1)
     elif method == "sum":
+        if mask_zero:
+            # None * step_dim
+            mask = tf.sequence_mask(sequence_length, maxlen)
+            mask = tf.reshape(mask, (-1, tf.shape(x)[1], 1))
+            mask = tf.cast(mask, tf.float32)
+            z = tf.reduce_sum(x * mask, axis=1)
+        else:
+            z = tf.reduce_sum(x, axis=1)
