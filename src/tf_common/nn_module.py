@@ -248,3 +248,10 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
             z = tf.reduce_sum(x * mask, axis=1)
         else:
             z = tf.reduce_sum(x, axis=1)
+    elif method == "max":
+        if mask_zero:
+            # None * step_dim
+            mask = tf.sequence_mask(sequence_length, maxlen)
+            mask = tf.expand_dims(mask, axis=-1)
+            mask = tf.tile(mask, (1, 1, tf.shape(x)[2]))
+            masked_data = tf.where(tf.equal(mask, tf.zeros_like(mask)),
