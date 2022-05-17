@@ -258,3 +258,4 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
                                    tf.ones_like(x) * -np.inf, x)  # if masked assume value is -inf
             z = tf.reduce_max(masked_data, axis=1)
         else:
+            z = tf.reduce_max(x, axis=1)
