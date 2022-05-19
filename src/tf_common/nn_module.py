@@ -259,3 +259,11 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
             z = tf.reduce_max(masked_data, axis=1)
         else:
             z = tf.reduce_max(x, axis=1)
+    elif method == "attention":
+        if context is not None:
+            step_dim = tf.shape(x)[1]
+            context = tf.expand_dims(context, axis=1)
+            context = tf.tile(context, [1, step_dim, 1])
+            y = tf.concat([x, context], axis=-1)
+        else:
+            y = x
