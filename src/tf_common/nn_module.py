@@ -267,3 +267,9 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
             y = tf.concat([x, context], axis=-1)
         else:
             y = x
+        a = attention(y, feature_dim, sequence_length, mask_zero, maxlen, seed=seed, scope_name=scope_name, reuse=reuse)
+        z = tf.reduce_sum(x * a, axis=1)
+    if bn:
+        z = tf.layers.BatchNormalization()(z, training=training)
+    return z
+
