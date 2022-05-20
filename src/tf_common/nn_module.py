@@ -273,3 +273,10 @@ def attend(x, sequence_length=None, method="ave", context=None, feature_dim=None
         z = tf.layers.BatchNormalization()(z, training=training)
     return z
 
+
+#### Step 4
+def _dense_block_mode1(x, hidden_units, dropouts, densenet=False, scope_name="dense_block", reuse=False, training=False, seed=0, bn=False):
+    """
+    :param x:
+    :param hidden_units:
+    :param dropouts:
