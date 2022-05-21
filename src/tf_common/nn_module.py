@@ -280,3 +280,10 @@ def _dense_block_mode1(x, hidden_units, dropouts, densenet=False, scope_name="de
     :param x:
     :param hidden_units:
     :param dropouts:
+    :param densenet: enable densenet
+    :return:
+    Ref: https://github.com/titu1994/DenseNet
+    """
+    for i, (h, d) in enumerate(zip(hidden_units, dropouts)):
+        scope_name_i = "%s-dense_block_mode1-%s"%(str(scope_name), str(i))
+        with tf.variable_scope(scope_name, reuse=reuse):
