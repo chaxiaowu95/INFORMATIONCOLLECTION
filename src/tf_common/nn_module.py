@@ -287,3 +287,6 @@ def _dense_block_mode1(x, hidden_units, dropouts, densenet=False, scope_name="de
     for i, (h, d) in enumerate(zip(hidden_units, dropouts)):
         scope_name_i = "%s-dense_block_mode1-%s"%(str(scope_name), str(i))
         with tf.variable_scope(scope_name, reuse=reuse):
+            z = tf.layers.dense(x, h, kernel_initializer=tf.glorot_uniform_initializer(seed=seed * i),
+                                  reuse=reuse,
+                                  name=scope_name_i)
