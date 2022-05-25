@@ -290,3 +290,9 @@ def _dense_block_mode1(x, hidden_units, dropouts, densenet=False, scope_name="de
             z = tf.layers.dense(x, h, kernel_initializer=tf.glorot_uniform_initializer(seed=seed * i),
                                   reuse=reuse,
                                   name=scope_name_i)
+            if bn:
+                z = batch_normalization(z, training=training, name=scope_name_i+"-bn")
+            z = tf.nn.relu(z)
+            z = tf.layers.Dropout(d, seed=seed * i)(z, training=training) if d > 0 else z
+            if densenet:
+                x = tf.concat([x, z], axis=-1)
