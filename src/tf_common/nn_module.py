@@ -296,3 +296,7 @@ def _dense_block_mode1(x, hidden_units, dropouts, densenet=False, scope_name="de
             z = tf.layers.Dropout(d, seed=seed * i)(z, training=training) if d > 0 else z
             if densenet:
                 x = tf.concat([x, z], axis=-1)
+            else:
+                x = z
+    return x
+
