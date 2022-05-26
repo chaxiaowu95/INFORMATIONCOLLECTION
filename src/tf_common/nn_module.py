@@ -300,3 +300,8 @@ def _dense_block_mode1(x, hidden_units, dropouts, densenet=False, scope_name="de
                 x = z
     return x
 
+
+def _dense_block_mode2(x, hidden_units, dropouts, densenet=False, training=False, seed=0, bn=False, name="dense_block"):
+    """
+    :param x:
+    :param hidden_units:
