@@ -305,3 +305,9 @@ def _dense_block_mode2(x, hidden_units, dropouts, densenet=False, training=False
     """
     :param x:
     :param hidden_units:
+    :param dropouts:
+    :param densenet: enable densenet
+    :return:
+    Ref: https://github.com/titu1994/DenseNet
+    """
+    for i, (h, d) in enumerate(zip(hidden_units, dropouts)):
