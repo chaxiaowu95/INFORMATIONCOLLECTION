@@ -311,3 +311,9 @@ def _dense_block_mode2(x, hidden_units, dropouts, densenet=False, training=False
     Ref: https://github.com/titu1994/DenseNet
     """
     for i, (h, d) in enumerate(zip(hidden_units, dropouts)):
+        if bn:
+            z = batch_normalization(x, training=training, name=name + "-" + str(i))
+        z = tf.nn.relu(z)
+        z = tf.layers.Dropout(d, seed=seed * i)(z, training=training) if d > 0 else z
+        z = tf.layers.Dense(h, kernel_initializer=tf.glorot_uniform_initializer(seed=seed * i), dtype=tf.float32,
+                            bias_initializer=tf.zeros_initializer())(z)
