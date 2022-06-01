@@ -317,3 +317,8 @@ def _dense_block_mode2(x, hidden_units, dropouts, densenet=False, training=False
         z = tf.layers.Dropout(d, seed=seed * i)(z, training=training) if d > 0 else z
         z = tf.layers.Dense(h, kernel_initializer=tf.glorot_uniform_initializer(seed=seed * i), dtype=tf.float32,
                             bias_initializer=tf.zeros_initializer())(z)
+        if densenet:
+            x = tf.concat([x, z], axis=-1)
+        else:
+            x = z
+    return x
