@@ -322,3 +322,6 @@ def _dense_block_mode2(x, hidden_units, dropouts, densenet=False, training=False
         else:
             x = z
     return x
+
+
+def dense_block(x, hidden_units, dropouts, densenet=False, scope_name="dense_block", reuse=False, training=False, seed=0, bn=False):
