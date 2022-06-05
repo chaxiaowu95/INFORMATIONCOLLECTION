@@ -330,3 +330,11 @@ def dense_block(x, hidden_units, dropouts, densenet=False, scope_name="dense_blo
 
 def _resnet_branch_mode1(x, hidden_units, dropouts, training, seed=0):
     h1, h2, h3 = hidden_units
+    dr1, dr2, dr3 = dropouts
+    name = "resnet_block"
+    # branch 2
+    x2 = tf.layers.Dense(h1, kernel_initializer=tf.glorot_uniform_initializer(seed=seed * 2), dtype=tf.float32,
+                         bias_initializer=tf.zeros_initializer())(x)
+    x2 = tf.layers.BatchNormalization()(x2, training=training)
+    # x2 = batch_normalization(x2, training=training, name=name + "-" + str(1))
+    x2 = tf.nn.relu(x2)
