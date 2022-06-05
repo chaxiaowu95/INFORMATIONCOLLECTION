@@ -325,3 +325,8 @@ def _dense_block_mode2(x, hidden_units, dropouts, densenet=False, training=False
 
 
 def dense_block(x, hidden_units, dropouts, densenet=False, scope_name="dense_block", reuse=False, training=False, seed=0, bn=False):
+    return _dense_block_mode1(x, hidden_units, dropouts, densenet, scope_name, reuse, training, seed, bn)
+
+
+def _resnet_branch_mode1(x, hidden_units, dropouts, training, seed=0):
+    h1, h2, h3 = hidden_units
