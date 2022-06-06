@@ -338,3 +338,10 @@ def _resnet_branch_mode1(x, hidden_units, dropouts, training, seed=0):
     x2 = tf.layers.BatchNormalization()(x2, training=training)
     # x2 = batch_normalization(x2, training=training, name=name + "-" + str(1))
     x2 = tf.nn.relu(x2)
+    x2 = tf.layers.Dropout(dr1, seed=seed * 1)(x2, training=training) if dr1 > 0 else x2
+
+    x2 = tf.layers.Dense(h2, kernel_initializer=tf.glorot_uniform_initializer(seed=seed * 3), dtype=tf.float32,
+                         bias_initializer=tf.zeros_initializer())(x2)
+    x2 = tf.layers.BatchNormalization()(x2, training=training)
+    # x2 = batch_normalization(x2, training=training, name=name + "-" + str(2))
+    x2 = tf.nn.relu(x2)
