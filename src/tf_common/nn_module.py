@@ -353,3 +353,12 @@ def _resnet_branch_mode1(x, hidden_units, dropouts, training, seed=0):
     # x2 = batch_normalization(x2, training=training, name=name + "-" + str(3))
 
     return x2
+
+
+def _resnet_block_mode1(x, hidden_units, dropouts, cardinality=1, dense_shortcut=False, training=False, seed=0):
+    """A block that has a dense layer at shortcut.
+    # Arguments
+        input_tensor: input tensor
+        kernel_size: default 3, the kernel size of middle conv layer at main path
+        filters: list of integers, the filters of 3 conv layer at main path
+        stage: integer, current stage label, used for generating layer names
