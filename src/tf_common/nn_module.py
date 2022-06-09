@@ -369,3 +369,8 @@ def _resnet_block_mode1(x, hidden_units, dropouts, cardinality=1, dense_shortcut
     And the shortcut should have strides=(2,2) as well
     """
     h1, h2, h3 = hidden_units
+    dr1, dr2, dr3 = dropouts
+    name = "resnet_block"
+    xs = []
+    # branch 0
+    if dense_shortcut:
