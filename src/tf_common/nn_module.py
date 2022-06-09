@@ -362,3 +362,10 @@ def _resnet_block_mode1(x, hidden_units, dropouts, cardinality=1, dense_shortcut
         kernel_size: default 3, the kernel size of middle conv layer at main path
         filters: list of integers, the filters of 3 conv layer at main path
         stage: integer, current stage label, used for generating layer names
+        block: 'a','b'..., current block label, used for generating layer names
+    # Returns
+        Output tensor for the block.
+    Note that from stage 3, the first conv layer at main path is with strides=(2,2)
+    And the shortcut should have strides=(2,2) as well
+    """
+    h1, h2, h3 = hidden_units
