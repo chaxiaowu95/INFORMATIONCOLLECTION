@@ -378,3 +378,8 @@ def _resnet_block_mode1(x, hidden_units, dropouts, cardinality=1, dense_shortcut
                              bias_initializer=tf.zeros_initializer())(x)
         x0 = tf.layers.BatchNormalization()(x0, training=training)
         # x0 = batch_normalization(x0, training=training, name=name + "-" + str(0))
+        xs.append(x0)
+    else:
+        xs.append(x)
+
+    # branch 1 ~ cardinality
