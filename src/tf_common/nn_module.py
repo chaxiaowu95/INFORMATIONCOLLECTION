@@ -383,3 +383,5 @@ def _resnet_block_mode1(x, hidden_units, dropouts, cardinality=1, dense_shortcut
         xs.append(x)
 
     # branch 1 ~ cardinality
+    for i in range(cardinality):
+        xs.append(_resnet_branch_mode1(x, hidden_units, dropouts, training, seed))
