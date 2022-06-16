@@ -395,3 +395,11 @@ def _resnet_block_mode1(x, hidden_units, dropouts, cardinality=1, dense_shortcut
 def _resnet_branch_mode2(x, hidden_units, dropouts, training=False, seed=0, scope_name="_resnet_branch_mode2", reuse=False):
     h1, h2, h3 = hidden_units
     dr1, dr2, dr3 = dropouts
+    # name = "resnet"
+    with tf.variable_scope(scope_name, reuse=reuse):
+        # branch 2: bn-relu->weight
+        x2 = tf.layers.BatchNormalization()(x)
+        # x2 = batch_normalization(x, training=training, name=scope_name + "-bn-" + str(1))
+        x2 = tf.nn.relu(x2)
+        x2 = tf.layers.Dropout(dr1)(x2, training=training) if dr1 > 0 else x2
+        x2 = tf.layers.dense(x2, h1, kernel_initializer=tf.glorot_uniform_initializer(seed * 1),
