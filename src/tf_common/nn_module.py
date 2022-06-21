@@ -423,3 +423,9 @@ def _resnet_branch_mode2(x, hidden_units, dropouts, training=False, seed=0, scop
         x2 = tf.layers.dense(x2, h3, kernel_initializer=tf.glorot_uniform_initializer(seed * 3),
                              bias_initializer=tf.zeros_initializer(),
                              name=scope_name + "-dense-" + str(3),
+                             reuse=reuse)
+
+    return x2
+
+
+def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut=False, training=False, seed=0,
