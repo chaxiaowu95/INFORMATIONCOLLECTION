@@ -429,3 +429,11 @@ def _resnet_branch_mode2(x, hidden_units, dropouts, training=False, seed=0, scop
 
 
 def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut=False, training=False, seed=0,
+                        scope_name="_resnet_block_mode2", reuse=False):
+    """A block that has a dense layer at shortcut.
+    # Arguments
+        input_tensor: input tensor
+        kernel_size: default 3, the kernel size of middle conv layer at main path
+        filters: list of integers, the filters of 3 conv layer at main path
+        stage: integer, current stage label, used for generating layer names
+        block: 'a','b'..., current block label, used for generating layer names
