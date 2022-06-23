@@ -437,3 +437,6 @@ def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut
         filters: list of integers, the filters of 3 conv layer at main path
         stage: integer, current stage label, used for generating layer names
         block: 'a','b'..., current block label, used for generating layer names
+    # Returns
+        Output tensor for the block.
+    Note that from stage 3, the first conv layer at main path is with strides=(2,2)
