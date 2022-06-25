@@ -446,3 +446,6 @@ def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut
     dr1, dr2, dr3 = dropouts
 
     xs = []
+    # branch 0
+    if dense_shortcut:
+        with tf.variable_scope(scope_name, reuse=reuse):
