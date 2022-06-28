@@ -449,3 +449,8 @@ def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut
     # branch 0
     if dense_shortcut:
         with tf.variable_scope(scope_name, reuse=reuse):
+            x0 = tf.layers.dense(x, h3, kernel_initializer=tf.glorot_uniform_initializer(seed * 1),
+                                 bias_initializer=tf.zeros_initializer(),
+                                 reuse=reuse,
+                                 name=scope_name+"-dense-"+str("0"))
+        xs.append(x0)
