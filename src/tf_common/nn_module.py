@@ -454,3 +454,8 @@ def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut
                                  reuse=reuse,
                                  name=scope_name+"-dense-"+str("0"))
         xs.append(x0)
+    else:
+        xs.append(x)
+
+    # branch 1 ~ cardinality
+    for i in range(cardinality):
