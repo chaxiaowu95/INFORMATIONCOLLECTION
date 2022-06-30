@@ -459,3 +459,8 @@ def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut
 
     # branch 1 ~ cardinality
     for i in range(cardinality):
+        xs.append(_resnet_branch_mode2(x, hidden_units, dropouts, training, seed, scope_name, reuse))
+
+    x = tf.add_n(xs)
+    return x
+
