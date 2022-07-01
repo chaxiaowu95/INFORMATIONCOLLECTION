@@ -464,3 +464,8 @@ def _resnet_block_mode2(x, hidden_units, dropouts, cardinality=1, dense_shortcut
     x = tf.add_n(xs)
     return x
 
+
+def resnet_block(input_tensor, hidden_units, dropouts, cardinality=1, dense_shortcut=False, training=False, seed=0,
+                 scope_name="resnet_block", reuse=False):
+    return _resnet_block_mode2(input_tensor, hidden_units, dropouts, cardinality, dense_shortcut, training, seed,
+                               scope_name, reuse)
