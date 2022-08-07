@@ -7,4 +7,5 @@ import shutil
 import numpy as np
 
 
-def _timestamp(
+def _timestamp():
+  
