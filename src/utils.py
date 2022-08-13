@@ -8,4 +8,4 @@ import numpy as np
 
 
 def _timestamp():
-    now = dateti
+    now = datetime.da
