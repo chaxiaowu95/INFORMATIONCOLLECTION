@@ -8,4 +8,5 @@ import numpy as np
 
 
 def _timestamp():
-    now = datetime.datetime.now(
+    now = datetime.datetime.now()
+    
