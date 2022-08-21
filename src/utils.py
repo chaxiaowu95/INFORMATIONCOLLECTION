@@ -9,4 +9,4 @@ import numpy as np
 
 def _timestamp():
     now = datetime.datetime.now()
-    now_
+    now_str = now.
