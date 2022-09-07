@@ -10,4 +10,5 @@ import numpy as np
 def _timestamp():
     now = datetime.datetime.now()
     now_str = now.strftime("%Y%m%d%H%M")
-    return no
+    return now_str
+
