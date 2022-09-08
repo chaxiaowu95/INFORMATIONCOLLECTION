@@ -13,4 +13,4 @@ def _timestamp():
     return now_str
 
 
-de
+def _
