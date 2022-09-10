@@ -13,4 +13,4 @@ def _timestamp():
     return now_str
 
 
-def _get_l
+def _get_logge
