@@ -13,4 +13,4 @@ def _timestamp():
     return now_str
 
 
-def _get_logger(logdir, logname, loglev
+def _get_logger(logdir, logname, loglevel=
