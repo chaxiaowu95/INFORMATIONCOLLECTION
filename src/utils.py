@@ -14,4 +14,4 @@ def _timestamp():
 
 
 def _get_logger(logdir, logname, loglevel=logging.INFO):
-    fmt = "[%(asctime)s] %(levelna
+    fmt = "[%(asctime)s] %(levelname)s
