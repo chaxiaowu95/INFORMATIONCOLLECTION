@@ -18,4 +18,4 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
     formatter = logging.Formatter(fmt)
 
     handler = logging.handlers.RotatingFileHandler(
-        filen
+        filename=os.pat
