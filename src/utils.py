@@ -18,4 +18,5 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
     formatter = logging.Formatter(fmt)
 
     handler = logging.handlers.RotatingFileHandler(
-        filename=os.path.join(logdir, logna
+        filename=os.path.join(logdir, logname),
+  
