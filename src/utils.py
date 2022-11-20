@@ -21,4 +21,6 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
         filename=os.path.join(logdir, logname),
         maxBytes=2 * 1024 * 1024 * 1024,
         backupCount=10)
-    handler.setFormatter(format
+    handler.setFormatter(formatter)
+
+  
