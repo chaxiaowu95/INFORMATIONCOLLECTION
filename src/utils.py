@@ -23,4 +23,4 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
         backupCount=10)
     handler.setFormatter(formatter)
 
-    logger = lo
+    logger = loggin
