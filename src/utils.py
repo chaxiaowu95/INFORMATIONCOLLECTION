@@ -25,4 +25,4 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
 
     logger = logging.getLogger("")
     logger.addHandler(handler)
-    logger.setLe
+    logger.setLevel(logle
