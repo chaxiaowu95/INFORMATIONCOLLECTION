@@ -26,4 +26,7 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
     logger = logging.getLogger("")
     logger.addHandler(handler)
     logger.setLevel(loglevel)
-    return logge
+    return logger
+
+
+def _m
