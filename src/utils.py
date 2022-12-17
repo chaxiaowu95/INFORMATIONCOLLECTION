@@ -29,4 +29,4 @@ def _get_logger(logdir, logname, loglevel=logging.INFO):
     return logger
 
 
-def _makedirs(d
+def _makedirs(dir, fo
