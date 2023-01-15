@@ -35,4 +35,4 @@ def _makedirs(dir, force=False):
             shutil.rmtree(dir)
             os.makedirs(dir)
     else:
-        os
+        os.maked
