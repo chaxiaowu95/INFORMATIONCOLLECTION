@@ -38,4 +38,4 @@ def _makedirs(dir, force=False):
         os.makedirs(dir)
 
 
-def _get_inte
+def _get_intersec
