@@ -39,4 +39,4 @@ def _makedirs(dir, force=False):
 
 
 def _get_intersect_index(all, subset):
-    lst
+    lst = []
