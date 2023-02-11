@@ -41,4 +41,4 @@ def _makedirs(dir, force=False):
 def _get_intersect_index(all, subset):
     lst = []
     for xi in subset:
-        i = np.where(a
+        i = np.where(all == x
