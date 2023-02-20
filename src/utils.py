@@ -43,4 +43,4 @@ def _get_intersect_index(all, subset):
     for xi in subset:
         i = np.where(all == xi)[0]
         lst.append(i)
-    return np.hstac
+    return np.hstack(
